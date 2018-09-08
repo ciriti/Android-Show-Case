@@ -9,7 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 /**
  * Created by ciriti
  */
-class App : Application() {
+class TrackApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -34,7 +34,6 @@ class App : Application() {
                         Log.w("mytag", "Error getting documents.", it.getException());
                     }
                 }
-
 
         println("test")
     }

@@ -1,3 +1,5 @@
+@file:Suppress("IllegalIdentifier")
+
 package ciriti.datalayer.database
 
 import ciriti.datalayer.network.TopTrack
@@ -18,7 +20,7 @@ class DatabaseTest {
     }
 
     @Test
-    fun getCollection(){
+    fun `test subscription to get update`(){
         val collection = "top_tracks.json".createGsonObj<TopTrack>().tracks.track
         db.saveCollection(collection)
         val test = db.getCollection().test()
@@ -27,14 +29,14 @@ class DatabaseTest {
     }
 
     @Test
-    fun getCollectionEmpty(){
+    fun `test subscription to get update on an empty collection`(){
         val test = db.getCollection().test()
         test.assertNoErrors()
         test.assertValue { it.isEmpty() }
     }
 
     @Test
-    fun getTrackByName(){
+    fun `test subscription to a track by name`(){
         val collection = "top_tracks.json".createGsonObj<TopTrack>().tracks.track
         db.saveCollection(collection)
         val test = db.getTrackByName(collection[0].name).test()
