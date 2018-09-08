@@ -1,6 +1,6 @@
 package util
 
-import ciriti.datasource.network.beans.CrypCurrency
+import com.github.salomonbrys.kotson.fromJson
 import com.google.common.io.ByteSource
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -33,4 +33,9 @@ fun String.jsonFile2String() : String{
     }
 
     return byteSource.asCharSource(Charsets.UTF_8).read()
+}
+
+inline fun <reified T> String.createGsonObj() : T{
+    val jsonString = this.jsonFile2String()
+    return Gson().fromJson(jsonString, T::class.java)
 }
