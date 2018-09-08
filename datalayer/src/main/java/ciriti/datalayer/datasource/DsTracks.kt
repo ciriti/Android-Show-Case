@@ -1,7 +1,9 @@
 package ciriti.datalayer.datasource
 
 import androidx.annotation.MainThread
+import ciriti.datalayer.database.IDatabase
 import ciriti.datalayer.network.ServiceApiRx
+import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Completable
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -19,6 +21,7 @@ interface IDsTracks{
 
 class DsTracks(
         val networAdapter : ServiceApiRx,
+        val database : IDatabase,
         // useful for test, you can inject the schedulers
         val workerScheduler : Scheduler = Schedulers.computation(),
         val mainScheduler   : Scheduler = AndroidSchedulers.mainThread()

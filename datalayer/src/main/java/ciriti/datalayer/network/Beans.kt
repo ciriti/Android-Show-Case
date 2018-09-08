@@ -41,23 +41,23 @@ data class Tracks (
 
 data class Track (
         @SerializedName("name")
-        val name: String,
+        val name: String = "",
         @SerializedName("duration")
-        val duration: String,
+        val duration: String = "",
         @SerializedName("playcount")
-        val playcount: String,
+        val playcount: String = "",
         @SerializedName("listeners")
-        val listeners: String,
+        val listeners: String = "",
         @SerializedName("mbid")
-        val mbid: String,
+        val mbid: String = "",
         @SerializedName("url")
-        val url: String,
+        val url: String = "",
         @SerializedName("streamable")
-        val streamable: Streamable,
+        val streamable: Streamable? = null,
         @SerializedName("artist")
-        val artist: Artist,
+        val artist: Artist? = null,
         @SerializedName("image")
-        val image: List<Image>
+        val image: List<Image> = emptyList()
 )
 
 data class Streamable (
