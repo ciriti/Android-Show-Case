@@ -20,6 +20,11 @@ interface IDatabase {
     fun getTrackByName(name : String) : BehaviorProcessor<Track>
 }
 
+/**
+ * This is an observable database you can subscribe to receive the events
+ * Currently it is container of a list but you can change the implementation adn
+ * add a real DB.
+ */
 class Database(
         val listProcessor : BehaviorProcessor<List<Track>> = BehaviorProcessor.create(),
         val trackProcessor : BehaviorProcessor<Track> = BehaviorProcessor.create()

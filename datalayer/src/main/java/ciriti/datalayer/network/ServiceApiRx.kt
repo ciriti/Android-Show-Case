@@ -9,10 +9,10 @@ import retrofit2.http.Query
  */
 interface ServiceApiRx {
 
-    @GET("$URL/?api_key=$API_KEY&method=chart.gettoptracks&format=json&limit=?")
-    fun getTopTracks(@Query("limit") pLimit : Int): Single<List<TopTrack>>
+    @GET("$URL/?api_key=$API_KEY&method=chart.gettoptracks&format=json&?")
+    fun getTopTracks(@Query("limit") pLimit : Int): Single<TopTrack>
 
-    @GET("$URL/?api_key=$API_KEY&method=chart.gettopartists&format=json&limit=?")
+    @GET("$URL/?api_key=$API_KEY&method=chart.gettopartists&format=json&?")
     fun getTopArtists(@Query("limit") pLimit : Int): Single<List<TopTrack>>
 
 }
