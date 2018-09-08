@@ -1,0 +1,16 @@
+apply plugin: 'java-library'
+apply plugin: "kotlin"
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // ThreeTenBP is better than Joda-Time.
+    // Joda-Time has a very large API which brings with it a very large binary size and
+    // large method count.
+    api "org.threeten:threetenbp:$rootProject.threetenbpVersion:no-tzdb"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
