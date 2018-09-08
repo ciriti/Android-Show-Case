@@ -1,36 +1,21 @@
 package ciriti.datalayer.network
 
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import org.junit.Assert
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
-import org.mockito.junit.MockitoJUnit
+import retrofit2.Retrofit
+import util.createAdapter
 
 /**
- * Created by carmeloiriti, 05/01/18.
+ * Created by carmeloiriti
  */
 class ServiceApiRxTest {
 
     lateinit var retrofit : ServiceApiRx
-    @Rule
-    fun mokitoRules() = MockitoJUnit.rule()
 
     @Before
     fun setup(){
-
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
-
-        retrofit = retrofit2.Retrofit.Builder()
-                .addCallAdapterFactory(retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory.create())
-                .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create())
-                .baseUrl(URL)
-                .client(client)
-                .build()
-                .create(ServiceApiRx::class.java)
+        retrofit = Retrofit.Builder().createAdapter(URL)
     }
 
     @Test

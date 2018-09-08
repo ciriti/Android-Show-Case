@@ -1,9 +1,10 @@
 package util
 
-import com.github.salomonbrys.kotson.fromJson
 import com.google.common.io.ByteSource
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import java.io.InputStream
 
 
@@ -35,7 +36,28 @@ fun String.jsonFile2String() : String{
     return byteSource.asCharSource(Charsets.UTF_8).read()
 }
 
+/**
+ * Receive a file.json and create a reified Object
+ */
 inline fun <reified T> String.createGsonObj() : T{
     val jsonString = this.jsonFile2String()
     return Gson().fromJson(jsonString, T::class.java)
+}
+
+/**
+ * Utility for test
+ */
+inline fun <reified T> retrofit2.Retrofit.Builder.createAdapter(url : String) : T {
+
+    val interceptor = HttpLoggingInterceptor()
+    interceptor.level = HttpLoggingInterceptor.Level.BODY
+    val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
+
+    val builder =  this
+            .addCallAdapterFactory(retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory.create())
+            .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create())
+            .baseUrl(url)
+            .client(client)
+            .build()
+    return builder.create(T::class.java)
 }
