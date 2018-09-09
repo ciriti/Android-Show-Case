@@ -35,6 +35,10 @@ android {
         androidTest.java.srcDirs += 'src/androidTest/kotlin'
         androidTest.res.srcDirs += 'src/sharedTest/resources'
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -46,6 +50,7 @@ dependencies {
     implementation "com.google.firebase:firebase-core:$firebase_ver"
     implementation "com.google.firebase:firebase-firestore:$firestore_ver"
 
+    implementation "com.android.support:design:27.1.1"
     implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'

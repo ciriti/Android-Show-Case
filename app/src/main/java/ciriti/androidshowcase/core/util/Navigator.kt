@@ -1,4 +1,4 @@
-package ciriti.androidshowcase.core
+package ciriti.androidshowcase.core.util
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.ImageView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentActivity
+import ciriti.androidshowcase.core.empty
+import ciriti.androidshowcase.core.invokeActivity
 import ciriti.androidshowcase.features.toptracks.TopTracksActivity
 import ciriti.androidshowcase.features.toptracks.widget.TrackViewInfo
 

@@ -1,4 +1,4 @@
-package ciriti.androidshowcase.core
+package ciriti.androidshowcase.core.util
 
 import ciriti.datalayer.datasource.IUserDatasource
 
