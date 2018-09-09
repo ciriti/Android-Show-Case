@@ -35,8 +35,7 @@ class TracksAdapter @Inject constructor() : RecyclerView.Adapter<TracksAdapter.V
   override fun onCreateViewHolder(
     parent: ViewGroup,
     viewType: Int
-  ) =
-    ViewHolder(parent.inflate(R.layout.row_track))
+  ) = ViewHolder(parent.inflate(R.layout.row_track))
 
   override fun getItemCount() = collection.size
 
@@ -46,8 +45,7 @@ class TracksAdapter @Inject constructor() : RecyclerView.Adapter<TracksAdapter.V
   override fun onBindViewHolder(
     holder: ViewHolder,
     position: Int
-  ) =
-    holder.bind(collection[position], clickListener)
+  ) = holder.bind(collection[position], clickListener)
 
   /**
    * Holder class

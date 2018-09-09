@@ -2,23 +2,26 @@ package ciriti.androidshowcase.core
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentTransaction
 import ciriti.androidshowcase.core.components.BaseActivity
 import ciriti.androidshowcase.core.components.BaseFragment
+import ciriti.androidshowcase.core.util.ImageViewBaseTarget
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.target.BaseTarget
-import com.bumptech.glide.request.target.SizeReadyCallback
 import com.bumptech.glide.request.target.Target
-import com.bumptech.glide.request.transition.Transition
 import kotlinx.android.synthetic.main.activity_main.fragmentContainer
 
 /**
@@ -57,6 +60,27 @@ fun View.cancelTransition() {
   transitionName = null
 }
 
+fun AppCompatActivity.initilize(fragment: Fragment, @IdRes resId: Int) {
+  supportFragmentManager
+      .beginTransaction()
+      .add(resId, fragment, fragment::class.java.name)
+      .commit()
+}
+
+fun AppCompatActivity.openFragment(@IdRes resId: Int, fragment: Fragment) {
+  supportFragmentManager
+      .beginTransaction()
+      .add(resId, fragment, fragment::class.java.name)
+      .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+      .commit()
+}
+
+val Context.preferences: SharedPreferences
+  get() = PreferenceManager.getDefaultSharedPreferences(this)
+
+/**
+ * View extensions
+ */
 fun View.isVisible() = this.visibility == View.VISIBLE
 
 fun View.visible() {
@@ -89,27 +113,3 @@ fun ImageView.loadUrlAndPostponeEnterTransition(
       .into(target)
 }
 
-private class ImageViewBaseTarget(
-  var imageView: ImageView?,
-  var activity: FragmentActivity?
-) : BaseTarget<Drawable>() {
-  override fun removeCallback(cb: SizeReadyCallback?) {
-    imageView = null
-    activity = null
-  }
-
-  override fun onResourceReady(
-    resource: Drawable,
-    transition: Transition<in Drawable>
-  ) {
-    imageView?.setImageDrawable(resource)
-    activity?.supportStartPostponedEnterTransition()
-  }
-
-  override fun onLoadFailed(errorDrawable: Drawable?) {
-    super.onLoadFailed(errorDrawable)
-    activity?.supportStartPostponedEnterTransition()
-  }
-
-  override fun getSize(cb: SizeReadyCallback) = cb.onSizeReady(SIZE_ORIGINAL, SIZE_ORIGINAL)
-}

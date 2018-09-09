@@ -1,40 +1,29 @@
 package ciriti.androidshowcase
 
+import android.app.Activity
 import android.app.Application
-import android.util.Log
+import ciriti.androidshowcase.di.DaggerAppComponent
 import com.google.firebase.FirebaseApp
-import com.google.firebase.firestore.FirebaseFirestore
+import com.squareup.leakcanary.LeakCanary
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import javax.inject.Inject
 
 /**
  * Created by ciriti
  */
-class TrackApplication : Application() {
+class TrackApplication : Application(), HasActivityInjector {
+
+  @Inject lateinit var activityInjector: DispatchingAndroidInjector<Activity>
+  override fun activityInjector() = activityInjector
 
   override fun onCreate() {
     super.onCreate()
     FirebaseApp.initializeApp(this)
 
-    val db = FirebaseFirestore.getInstance()
-
-//        db
-//                .collection("top_tracks")
-//                .add(Pair("test", "test"))
-//                .addOnSuccessListener {
-//                    println(it)
-//                }
-
-    val a = db.collection("top_tracks")
-        .get()
-        .addOnCompleteListener {
-          if (it.isSuccessful()) {
-            for (document in it.getResult()) {
-              Log.d("mytag", document.getId() + " => " + document.getData());
-            }
-          } else {
-            Log.w("mytag", "Error getting documents.", it.getException());
-          }
-        }
-
-    println("test")
+    LeakCanary.install(this)
+    DaggerAppComponent.builder()
+        .create(this)
+        .inject(this)
   }
 }
