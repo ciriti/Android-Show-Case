@@ -1,30 +1,39 @@
 package ciriti.androidshowcase.core.components
 
+import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import ciriti.androidshowcase.R
 import ciriti.androidshowcase.core.appContext
 import ciriti.androidshowcase.core.viewContainer
+import ciriti.androidshowcase.features.toptracks.TopTracksViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.toolbar.progress
+import javax.inject.Inject
 
 /**
  * Created by ciriti
  */
-abstract class BaseFragment : Fragment() {
-  abstract fun layoutId(): Int
+abstract class BaseFragment : Fragment(), HasSupportFragmentInjector {
 
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View =
-    inflater.inflate(layoutId(), container, false)
+  @Inject lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+  override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingAndroidInjector
+
+  @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+
+  override fun onAttach(context: Context?) {
+    super.onAttach(context)
+    AndroidSupportInjection.inject(this)
+  }
 
   open fun onBackPressed() {}
 

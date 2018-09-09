@@ -27,7 +27,7 @@ class TracksAdapter @Inject constructor() : RecyclerView.Adapter<TracksAdapter.V
   /**
    * Listener invoked if the collection change
    */
-  private var clickListener: (FlatTrack, ViewTransitionInfo) -> Unit = { _, _ -> }
+  var clickListener: (FlatTrack, ViewTransitionInfo) -> Unit = { _, _ -> }
 
   /**
    * Create a view instance for the recicleview

@@ -1,6 +1,7 @@
 package ciriti.androidshowcase.core.components
 
 import android.view.View
+import java.io.Serializable
 
 /**
  * Created by ciriti
@@ -21,4 +22,4 @@ data class FlatTrack(
   val imageUrl_M: String = "",
   val imageUrl_L: String = "",
   val imageUrl_XL: String = ""
-)
+) : Serializable
