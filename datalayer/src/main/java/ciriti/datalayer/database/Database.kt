@@ -15,9 +15,9 @@ import io.reactivex.processors.BehaviorProcessor
  */
 
 interface IDatabase {
-    fun saveCollection(tracks : List<Track>)
-    fun getCollection() : BehaviorProcessor<List<Track>>
-    fun getTrackByName(name : String) : BehaviorProcessor<Track>
+  fun saveCollection(tracks: List<Track>)
+  fun getCollection(): BehaviorProcessor<List<Track>>
+  fun getTrackByName(name: String): BehaviorProcessor<Track>
 }
 
 /**
@@ -26,27 +26,27 @@ interface IDatabase {
  * add a real DB.
  */
 class Database(
-        val listProcessor : BehaviorProcessor<List<Track>> = BehaviorProcessor.create(),
-        val trackProcessor : BehaviorProcessor<Track> = BehaviorProcessor.create()
+  val listProcessor: BehaviorProcessor<List<Track>> = BehaviorProcessor.create(),
+  val trackProcessor: BehaviorProcessor<Track> = BehaviorProcessor.create()
 ) : IDatabase {
 
-    private var tracks: List<Track> = emptyList()
+  private var tracks: List<Track> = emptyList()
 
-    init {
-        listProcessor.onNext(tracks)
-        trackProcessor.onNext(Track())
-    }
+  init {
+    listProcessor.onNext(tracks)
+    trackProcessor.onNext(Track())
+  }
 
-    override fun saveCollection(tracks: List<Track>) {
-        this.tracks = tracks
-        listProcessor.onNext(tracks.toList())
-    }
+  override fun saveCollection(tracks: List<Track>) {
+    this.tracks = tracks
+    listProcessor.onNext(tracks.toList())
+  }
 
-    override fun getCollection(): BehaviorProcessor<List<Track>> = listProcessor
+  override fun getCollection(): BehaviorProcessor<List<Track>> = listProcessor
 
-    override fun getTrackByName(name: String): BehaviorProcessor<Track> {
-        return trackProcessor
-                .onNext(tracks.find { it.name == name }?:Track())
-                .let { trackProcessor }
-    }
+  override fun getTrackByName(name: String): BehaviorProcessor<Track> {
+    return trackProcessor
+        .onNext(tracks.find { it.name == name } ?: Track())
+        .let { trackProcessor }
+  }
 }

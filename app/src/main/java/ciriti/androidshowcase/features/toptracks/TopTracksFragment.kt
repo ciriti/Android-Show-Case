@@ -7,8 +7,8 @@ import javax.inject.Inject
 /**
  * Created by ciriti
  */
-class TopTracksFragment : Fragment(){
+class TopTracksFragment : Fragment() {
 
-    @Inject lateinit var tracksAdapter : TracksAdapter
+  @Inject lateinit var tracksAdapter: TracksAdapter
 
 }

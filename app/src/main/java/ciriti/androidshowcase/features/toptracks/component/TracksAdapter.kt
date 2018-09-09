@@ -8,7 +8,7 @@ import ciriti.androidshowcase.core.components.FlatTrack
 import ciriti.androidshowcase.core.components.ViewTransitionInfo
 import ciriti.androidshowcase.core.inflate
 import ciriti.androidshowcase.core.loadFromUrl
-import kotlinx.android.synthetic.main.row_track.view.*
+import kotlinx.android.synthetic.main.row_track.view.trackWall
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -17,40 +17,48 @@ import kotlin.properties.Delegates
  */
 class TracksAdapter @Inject constructor() : RecyclerView.Adapter<TracksAdapter.ViewHolder>() {
 
-    /**
-     * Observable property - every time a change occur the listener is called
-     */
-    private var collection: List<FlatTrack> by Delegates.observable(emptyList()) {
-        _, _, _ -> notifyDataSetChanged()
+  /**
+   * Observable property - every time a change occur the listener is called
+   */
+  private var collection: List<FlatTrack> by Delegates.observable(emptyList()) { _, _, _ ->
+    notifyDataSetChanged()
+  }
+
+  /**
+   * Listener invoked if the collection change
+   */
+  private var clickListener: (FlatTrack, ViewTransitionInfo) -> Unit = { _, _ -> }
+
+  /**
+   * Create a view instance for the recicleview
+   */
+  override fun onCreateViewHolder(
+    parent: ViewGroup,
+    viewType: Int
+  ) =
+    ViewHolder(parent.inflate(R.layout.row_track))
+
+  override fun getItemCount() = collection.size
+
+  /**
+   * Bind the java bean with the related view
+   */
+  override fun onBindViewHolder(
+    holder: ViewHolder,
+    position: Int
+  ) =
+    holder.bind(collection[position], clickListener)
+
+  /**
+   * Holder class
+   */
+  class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
+    fun bind(
+      track: FlatTrack,
+      clickListener: (FlatTrack, ViewTransitionInfo) -> Unit
+    ) {
+      itemView.trackWall.loadFromUrl(track.imageUrl_M)
+      itemView.setOnClickListener { clickListener(track, ViewTransitionInfo(itemView.trackWall)) }
     }
-
-    /**
-     * Listener invoked if the collection change
-     */
-    private var clickListener: (FlatTrack, ViewTransitionInfo) -> Unit = { _, _ -> }
-
-    /**
-     * Create a view instance for the recicleview
-     */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            ViewHolder(parent.inflate(R.layout.row_track))
-
-    override fun getItemCount() = collection.size
-
-    /**
-     * Bind the java bean with the related view
-     */
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-            holder.bind(collection[position], clickListener)
-
-    /**
-     * Holder class
-     */
-    class ViewHolder (item : View) : RecyclerView.ViewHolder(item) {
-        fun bind(track : FlatTrack, clickListener: (FlatTrack, ViewTransitionInfo) -> Unit) {
-            itemView.trackWall.loadFromUrl(track.imageUrl_M)
-            itemView.setOnClickListener { clickListener(track, ViewTransitionInfo(itemView.trackWall)) }
-        }
-    }
-
+  }
 }

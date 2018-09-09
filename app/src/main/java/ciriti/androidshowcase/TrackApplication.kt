@@ -2,7 +2,6 @@ package ciriti.androidshowcase
 
 import android.app.Application
 import android.util.Log
-import android.util.Pair
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -11,11 +10,11 @@ import com.google.firebase.firestore.FirebaseFirestore
  */
 class TrackApplication : Application() {
 
-    override fun onCreate() {
-        super.onCreate()
-        FirebaseApp.initializeApp(this)
+  override fun onCreate() {
+    super.onCreate()
+    FirebaseApp.initializeApp(this)
 
-        val db = FirebaseFirestore.getInstance()
+    val db = FirebaseFirestore.getInstance()
 
 //        db
 //                .collection("top_tracks")
@@ -24,17 +23,18 @@ class TrackApplication : Application() {
 //                    println(it)
 //                }
 
-        val a = db.collection("top_tracks").get()
-                .addOnCompleteListener {
-                    if (it.isSuccessful()) {
-                        for (document in it.getResult()) {
-                            Log.d("mytag", document.getId() + " => " + document.getData());
-                        }
-                    } else {
-                        Log.w("mytag", "Error getting documents.", it.getException());
-                    }
-                }
+    val a = db.collection("top_tracks")
+        .get()
+        .addOnCompleteListener {
+          if (it.isSuccessful()) {
+            for (document in it.getResult()) {
+              Log.d("mytag", document.getId() + " => " + document.getData());
+            }
+          } else {
+            Log.w("mytag", "Error getting documents.", it.getException());
+          }
+        }
 
-        println("test")
-    }
+    println("test")
+  }
 }

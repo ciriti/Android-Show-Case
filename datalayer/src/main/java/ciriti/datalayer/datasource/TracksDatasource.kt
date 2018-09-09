@@ -10,25 +10,25 @@ import io.reactivex.processors.BehaviorProcessor
  * Created by ciriti
  */
 
-interface ITracksDatasource{
+interface ITracksDatasource {
 
-    fun updateTopTracks(limit : Int) : Completable
+  fun updateTopTracks(limit: Int): Completable
 
-    fun observeTrackList() : BehaviorProcessor<List<Track>>
+  fun observeTrackList(): BehaviorProcessor<List<Track>>
 
 }
 
 class TracksDatasource(
-        val networAdapter : ServiceApiRx,
-        val database : IDatabase
-) : ITracksDatasource{
+  val networAdapter: ServiceApiRx,
+  val database: IDatabase
+) : ITracksDatasource {
 
-    override fun updateTopTracks(limit: Int) : Completable = networAdapter
-            .getTopTracks(limit)
-            .map {
-                database.saveCollection(it.tracks.track)
-            }
-            .toCompletable()
+  override fun updateTopTracks(limit: Int): Completable = networAdapter
+      .getTopTracks(limit)
+      .map {
+        database.saveCollection(it.tracks.track)
+      }
+      .toCompletable()
 
-    override fun observeTrackList() = database.getCollection()
+  override fun observeTrackList() = database.getCollection()
 }
