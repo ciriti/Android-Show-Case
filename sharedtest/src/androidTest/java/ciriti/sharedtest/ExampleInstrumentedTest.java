@@ -1,4 +1,4 @@
-package ciriti.datalayer;
+package ciriti.sharedtest;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("ciriti.datalayer.test", appContext.getPackageName());
+        assertEquals("ciriti.sharedtest.test", appContext.getPackageName());
     }
 }

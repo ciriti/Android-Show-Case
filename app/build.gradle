@@ -1,28 +1,99 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-allopen'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
-    defaultConfig {
-        applicationId "ciriti.androidshowcase"
-        minSdkVersion 16
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  compileSdkVersion rootProject.compileSdkVersion
+
+  defaultConfig {
+    applicationId "ciriti.androidshowcase"
+    minSdkVersion rootProject.minSdkVersion
+    targetSdkVersion rootProject.targetSdkVersion
+    versionCode 1
+    versionName "1.0"
+    multiDexEnabled true
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    resValue 'string', 'URL', "http://ws.audioscrobbler.com/2.0/"
+    resValue 'string', 'API_KEY', "4ce4f9f5b33d9dbfeb1247abd3555692"
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+  }
+
+  sourceSets {
+    String sharedTestDir = 'src/sharedTest/kotlin'
+    test {
+      java.srcDir sharedTestDir
     }
+    androidTest {
+      java.srcDir sharedTestDir
+    }
+    test.java.srcDirs += 'src/test/kotlin'
+    test.res.srcDirs += 'src/sharedTest/resources'
+    androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    androidTest.res.srcDirs += 'src/sharedTest/resources'
+  }
+
+  dataBinding {
+    enabled = true
+  }
+
+  kapt {
+    generateStubs = true
+  }
+
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+  implementation fileTree(include: ['*.jar'], dir: 'libs')
+  implementation project(':datalayer')
+  // kotlin
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  //Firestore
+  implementation "com.google.firebase:firebase-core:$firebase_ver"
+  implementation "com.google.firebase:firebase-firestore:$firestore_ver"
+  // android support
+  implementation "com.android.support:design:$supportLibVersion"
+  implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
+  implementation "com.android.support:cardview-v7:$supportLibraryVersion"
+  implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
+  // okHttp
+  // retrofit
+  implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+  implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+  implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+  implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+  implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+  //dagger
+  implementation "com.google.dagger:dagger:$dagger_version"
+  implementation "javax.annotation:jsr250-api:$javaxAnnotations_version"
+  implementation "javax.inject:javax.inject:$javaxInject_version"
+  // glide
+  implementation "com.github.bumptech.glide:glide:$glide_version"
+  //Dagger 2 dependencies
+  implementation "com.google.dagger:dagger-android-support:$dagger_version"
+  kapt "com.google.dagger:dagger-compiler:$dagger_version"
+  kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+  // architecture lifecycle
+  implementation "android.arch.lifecycle:extensions:$aac_lifecycle_version"
+  kapt "android.arch.lifecycle:compiler:$aac_lifecycle_version"
+  implementation "android.arch.lifecycle:reactivestreams:$aac_lifecycle_version"
+  // canary leaks
+  implementation "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
+
+  // Test helpers
+  testImplementation "android.arch.persistence.room:testing:$room_version"
+  testImplementation "com.nhaarman:mockito-kotlin:1.5.0"
+  testImplementation 'junit:junit:4.12'
+  androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+  androidTestImplementation "com.nhaarman:mockito-kotlin:1.5.0"
 }
+
+apply plugin: 'com.google.gms.google-services'

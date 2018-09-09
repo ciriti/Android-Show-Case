@@ -1,4 +1,4 @@
-package ciriti.datalayer;
+package ciriti.sharedtest;
 
 import org.junit.Test;
 
