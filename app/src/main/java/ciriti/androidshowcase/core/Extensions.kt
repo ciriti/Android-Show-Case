@@ -5,6 +5,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +20,19 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import ciriti.androidshowcase.core.components.BaseActivity
 import ciriti.androidshowcase.core.components.BaseFragment
+import ciriti.androidshowcase.core.components.FlatTrack
 import ciriti.androidshowcase.core.util.ImageViewBaseTarget
+import ciriti.datalayer.network.Track
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.target.Target
+import io.reactivex.Completable
+import io.reactivex.Flowable
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.fragmentContainer
 
 /**
@@ -111,5 +122,43 @@ fun ImageView.loadUrlAndPostponeEnterTransition(
   Glide.with(context.applicationContext)
       .load(url)
       .into(target)
+}
+
+/**
+ * Rx extension
+ */
+fun <T> Single<T>.subscribeOnWorkerT() = subscribeOn(Schedulers.computation())
+fun <T> Single<T>.observeOnAndroidMT() = observeOn(AndroidSchedulers.mainThread())
+fun <T> Flowable<T>.subscribeOnWorkerT() = subscribeOn(Schedulers.computation())
+fun <T> Flowable<T>.observeOnAndroidMT() = observeOn(AndroidSchedulers.mainThread())
+fun Completable.subscribeOnWorkerT() = subscribeOn(Schedulers.computation())
+fun Completable.observeOnAndroidMT() = observeOn(AndroidSchedulers.mainThread())
+
+fun Track.getFlatTrack(): FlatTrack {
+
+  val array = Array(4) { "" }
+  this.image
+      .forEachIndexed { index, image ->
+        array[index] = image.text ?: ""
+      }
+
+  return FlatTrack(
+      name = this.name,
+      artistName = this.artist?.name ?: "",
+      artistUrl = this.artist?.url ?: "",
+      duration = this.duration,
+      imageUrl_S = array[0],
+      imageUrl_M = array[1],
+      imageUrl_L = array[2],
+      imageUrl_XL = array[3],
+      listeners = this.listeners,
+      mbid = this.mbid,
+      playcount = this.playcount,
+      url = this.url
+  )
+}
+
+operator fun CompositeDisposable.plusAssign(disposable : Disposable){
+  this.add(disposable)
 }
 

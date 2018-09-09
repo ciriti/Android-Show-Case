@@ -6,9 +6,12 @@ import android.view.View
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import ciriti.androidshowcase.R
 import ciriti.androidshowcase.core.appContext
 import ciriti.androidshowcase.core.viewContainer
+import ciriti.androidshowcase.features.toptracks.TopTracksViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -24,6 +27,8 @@ abstract class BaseFragment : Fragment(), HasSupportFragmentInjector {
 
   @Inject lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
   override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingAndroidInjector
+
+  @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
   override fun onAttach(context: Context?) {
     super.onAttach(context)

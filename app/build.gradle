@@ -53,6 +53,11 @@ android {
   kapt {
     generateStubs = true
   }
+
+  allOpen {
+    annotation("ciriti.datalayer.annotation.MakeItOpen")
+  }
+
 }
 
 dependencies {
@@ -92,6 +97,8 @@ dependencies {
   implementation "android.arch.lifecycle:reactivestreams:$aac_lifecycle_version"
   // canary leaks
   implementation "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
+  // rxandroid
+  implementation "io.reactivex.rxjava2:rxandroid:$rxjava_version"
 
   // Test helpers
   testImplementation "android.arch.persistence.room:testing:$room_version"

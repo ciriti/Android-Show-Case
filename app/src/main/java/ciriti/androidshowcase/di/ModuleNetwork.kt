@@ -1,12 +1,9 @@
 package ciriti.androidshowcase.di
 
-import ciriti.androidshowcase.BuildConfig
-import ciriti.datalayer.network.ServiceApiRx
+import ciriti.androidshowcase.TrackApplication
+import ciriti.datalayer.util.NetworkManager
 import dagger.Module
 import dagger.Provides
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
 import javax.inject.Singleton
 
 /**

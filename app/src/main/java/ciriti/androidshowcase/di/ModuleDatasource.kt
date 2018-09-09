@@ -10,6 +10,7 @@ import ciriti.datalayer.database.Database
 import ciriti.datalayer.datasource.TracksDatasource
 import ciriti.datalayer.datasource.UserDatasource
 import ciriti.datalayer.network.ServiceApiRx
+import ciriti.datalayer.util.NetworkManager
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -26,6 +27,10 @@ class ModuleDatasource {
 
   @Provides
   @Singleton
+  fun provideNetworkManager(app : TrackApplication) = NetworkManager(app)
+
+  @Provides
+  @Singleton
   fun provideDatabase() = Database()
 
   @Provides
@@ -36,8 +41,9 @@ class ModuleDatasource {
   @Singleton
   fun provideTracksDatasource(
     database: Database,
-    service: ServiceApiRx
-  ) = TracksDatasource(database = database, networAdapter = service)
+    service: ServiceApiRx,
+    networkManager: NetworkManager
+  ) = TracksDatasource(service, database, networkManager)
 
   @Provides
   @Singleton
