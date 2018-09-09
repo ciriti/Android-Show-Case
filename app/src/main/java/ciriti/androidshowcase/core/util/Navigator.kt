@@ -4,14 +4,14 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.view.View
 import android.widget.ImageView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentActivity
+import ciriti.androidshowcase.core.components.ViewTransitionInfo
 import ciriti.androidshowcase.core.empty
 import ciriti.androidshowcase.core.invokeActivity
 import ciriti.androidshowcase.features.toptracks.TopTracksActivity
-import ciriti.androidshowcase.features.toptracks.widget.TrackViewInfo
+import ciriti.androidshowcase.features.toptracks.component.TrackViewInfo
 
 /**
  * Created by ciriti
@@ -29,11 +29,11 @@ class Navigator(val session : Session) {
 
     private fun showTopTracks(context: Context) = context.invokeActivity<TopTracksActivity>()
 
-    fun showTrackDetails(activity: FragmentActivity, trackInfo: TrackViewInfo, transitionSharedElement: View) {
+    fun showTrackDetails(activity: FragmentActivity, trackInfo: TrackViewInfo, transitionInfo: ViewTransitionInfo) {
         val intent = Intent(activity, activity::class.java)
         intent.putExtra("ciriti.androidshowcase.INTENT_PARAM_TRACK", trackInfo)
 
-        val sharedView = transitionSharedElement as ImageView
+        val sharedView = transitionInfo.transitionSharedElement as ImageView
         val activityOptions = ActivityOptionsCompat
                 .makeSceneTransitionAnimation(activity, sharedView, sharedView.transitionName)
         activity.startActivity(intent, activityOptions.toBundle())
@@ -65,4 +65,5 @@ class Navigator(val session : Session) {
 
         return intent
     }
+
 }

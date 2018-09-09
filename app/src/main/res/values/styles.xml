@@ -26,5 +26,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TrackWall">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:transitionName">@string/track_wall_transition</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
 
 </resources>

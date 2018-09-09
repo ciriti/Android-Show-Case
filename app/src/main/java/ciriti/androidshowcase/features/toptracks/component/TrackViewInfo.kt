@@ -1,4 +1,4 @@
-package ciriti.androidshowcase.features.toptracks.widget
+package ciriti.androidshowcase.features.toptracks.component
 
 import java.io.Serializable
 

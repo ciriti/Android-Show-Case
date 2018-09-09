@@ -49,12 +49,19 @@ dependencies {
     //Firestore
     implementation "com.google.firebase:firebase-core:$firebase_ver"
     implementation "com.google.firebase:firebase-firestore:$firestore_ver"
-
-    implementation "com.android.support:design:27.1.1"
+    // android support
+    implementation "com.android.support:design:$supportLibVersion"
     implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
+    implementation "com.android.support:cardview-v7:$supportLibraryVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
-    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+
+    // okHttp
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    //dagger
+    implementation  "com.google.dagger:dagger:$dagger_version"
+    implementation  "javax.annotation:jsr250-api:$javaxAnnotations_version"
+    implementation  "javax.inject:javax.inject:$javaxInject_version"
 
     // Test helpers
     testImplementation "android.arch.persistence.room:testing:$room_version"
