@@ -15,32 +15,7 @@ import javax.inject.Singleton
 @Module
 abstract class ModuleNetwork {
 
-  @Provides
-  @Singleton
-  fun provideServiceApiRx(networkService: ServiceApiRx) =
-    Retrofit.Builder().createAdapter<ServiceApiRx>("")
 
-}
 
-inline fun <reified T> Retrofit.Builder.createAdapter(url: String): T {
-
-  val interceptor = HttpLoggingInterceptor()
-  interceptor.level = when (BuildConfig.DEBUG) {
-    true -> HttpLoggingInterceptor.Level.BODY
-    else -> HttpLoggingInterceptor.Level.NONE
-  }
-
-  val client = OkHttpClient.Builder()
-      .addInterceptor(interceptor)
-      .build()
-
-  val builder = this
-      .addCallAdapterFactory(retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory.create())
-      .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create())
-      .baseUrl(url)
-      .client(client)
-      .build()
-
-  return builder.create(T::class.java)
 }
 

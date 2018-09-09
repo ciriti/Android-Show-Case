@@ -7,6 +7,7 @@ import android.net.Uri
 import android.widget.ImageView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentActivity
+import ciriti.androidshowcase.core.components.FlatTrack
 import ciriti.androidshowcase.core.components.ViewTransitionInfo
 import ciriti.androidshowcase.core.empty
 import ciriti.androidshowcase.core.invokeActivity
@@ -16,6 +17,7 @@ import ciriti.androidshowcase.features.toptracks.component.TrackViewInfo
 /**
  * Created by ciriti
  */
+
 class Navigator(val session: Session) {
 
   private fun showLogin(context: Context) = context.startActivity(
@@ -34,7 +36,7 @@ class Navigator(val session: Session) {
 
   fun showTrackDetails(
     activity: FragmentActivity,
-    trackInfo: TrackViewInfo,
+    trackInfo: FlatTrack,
     transitionInfo: ViewTransitionInfo
   ) {
     val intent = Intent(activity, activity::class.java)
