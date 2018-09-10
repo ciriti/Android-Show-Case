@@ -19,7 +19,7 @@ class TrackApplication : Application(), HasActivityInjector {
 
   override fun onCreate() {
     super.onCreate()
-    FirebaseApp.initializeApp(this)
+//    FirebaseApp.initializeApp(this)
 
     LeakCanary.install(this)
     DaggerAppComponent.builder()

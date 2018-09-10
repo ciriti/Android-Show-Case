@@ -8,5 +8,5 @@ import io.reactivex.Single
  */
 class NetworkManager(val context: Context) {
   // TODO change deprecated method
-  val isConnected get() = Single.just(context.networkInfo?.isConnectedOrConnecting)
+  val isConnected get() = Single.just(context.networkInfo?.isConnectedOrConnecting?:false)
 }
