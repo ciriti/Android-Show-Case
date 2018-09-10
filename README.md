@@ -1,14 +1,14 @@
 # AndroidShowCase
 
-The app use free music API. It has two main module:
+The app uses free music API. It has two main modules:
 
 - App: view layer
 - Datasource: data layer
 
-I used:
+I used the followings:
 
-- SOLID principle
-- common android best practice from the official documentation
+- SOLID principles
+- common android best practices from the official documentation
 
 ##### Architecture:
 
