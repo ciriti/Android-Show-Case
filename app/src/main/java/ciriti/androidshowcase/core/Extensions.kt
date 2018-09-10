@@ -130,7 +130,6 @@ fun ImageView.loadUrlAndPostponeEnterTransition(
  * Rx extension
  */
 fun <T> Single<T>.subscribeOnWorkerT() = subscribeOn(Schedulers.computation())
-
 fun <T> Single<T>.observeOnAndroidMT() = observeOn(AndroidSchedulers.mainThread())
 fun <T> Flowable<T>.subscribeOnWorkerT() = subscribeOn(Schedulers.computation())
 fun <T> Flowable<T>.observeOnAndroidMT() = observeOn(AndroidSchedulers.mainThread())

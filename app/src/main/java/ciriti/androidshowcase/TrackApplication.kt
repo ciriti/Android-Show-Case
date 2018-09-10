@@ -25,5 +25,6 @@ class TrackApplication : Application(), HasActivityInjector {
     DaggerAppComponent.builder()
         .create(this)
         .inject(this)
+
   }
 }

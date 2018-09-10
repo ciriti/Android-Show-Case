@@ -10,6 +10,8 @@ It is based on:
 - SOLID principles
 - common android best practices from the official android documentation
 
+I chose the [Java Code Styles](https://github.com/square/java-code-styles/).
+
 ##### Architecture:
 
 - MVVM
