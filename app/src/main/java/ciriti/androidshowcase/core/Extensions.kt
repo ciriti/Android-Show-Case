@@ -33,6 +33,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subscribers.TestSubscriber
 import kotlinx.android.synthetic.main.activity_main.fragmentContainer
 import java.security.InvalidParameterException
 
@@ -165,12 +166,15 @@ operator fun CompositeDisposable.plusAssign(disposable: Disposable) {
 }
 
 /**
- *
+ * Map the right message to the exception
  */
-
 fun BaseViewModel.handleException(error: Throwable) = when (error) {
   is InvalidParameterException -> "InvalidParameterException"
   is NoNetworkException -> "Offline mod active"
   else -> "Generic exception"
 }
 
+/**
+ * RxJava test extension - return the first event received
+ */
+fun <T> TestSubscriber<T>.firstValues() = this.values().first()

@@ -1,5 +1,6 @@
 package ciriti.datalayer.datasource
 
+import ciriti.datalayer.annotation.MakeItOpenForTest
 import ciriti.datalayer.database.IDatabase
 import ciriti.datalayer.exception.NoNetworkException
 import ciriti.datalayer.network.ServiceApiRx
@@ -22,6 +23,7 @@ interface ITracksDatasource {
 
 }
 
+@MakeItOpenForTest
 class TracksDatasource(
   protected val networAdapter: ServiceApiRx,
   protected val database: IDatabase,

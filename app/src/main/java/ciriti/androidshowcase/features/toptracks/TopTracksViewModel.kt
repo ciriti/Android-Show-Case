@@ -44,7 +44,7 @@ class TopTracksViewModel @Inject constructor(
         .updateTopTracks(limit)
         .subscribeOnWorkerT()
         .observeOnAndroidMT()
-        .doOnSubscribe { liveData.value = LoadingState(false) }
+        .doOnSubscribe { liveData.value = LoadingState(true) }
         .subscribe(this::onComplete, this::onError)
   }
 
