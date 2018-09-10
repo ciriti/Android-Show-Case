@@ -1,4 +1,4 @@
-package ciriti.androidshowcase
+package ciriti.androidshowcase.core
 
 /**
  * Created by ciriti
@@ -14,4 +14,3 @@ class EmptyTopTracksList : RuntimeException()
 
 /** example */
 class WhateverRuntimeException : RuntimeException()
-
