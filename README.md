@@ -1,14 +1,14 @@
 # AndroidShowCase
 
-The app uses free music API. It has two main modules:
+The app uses a free music API. It has two main modules:
 
 - App: view layer
 - Datasource: data layer
 
-I used the followings:
+It is based on:
 
 - SOLID principles
-- common android best practices from the official documentation
+- common android best practices from the official android documentation
 
 ##### Architecture:
 
@@ -18,7 +18,7 @@ I used the followings:
 
 - kotlin
 
-##### Used library:
+##### Used libraries:
 
 - RxJava
 - Retrofit 2
@@ -27,7 +27,7 @@ I used the followings:
 - canary leaks
 - Android Architecture Components
 
-##### Test lib
+##### Test libraries:
 
 - Espresso
 - Mockito
