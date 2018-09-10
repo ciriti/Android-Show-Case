@@ -1,6 +1,6 @@
 {
   "project_info": {
-    "project_number": "",
+    "project_number": "339870135866",
     "firebase_url": "https://androidshowcase-abe0c.firebaseio.com",
     "project_id": "androidshowcase-abe0c",
     "storage_bucket": "androidshowcase-abe0c.appspot.com"
@@ -8,20 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "",
+        "mobilesdk_app_id": "1:339870135866:android:b4fbf1e34990b997",
         "android_client_info": {
           "package_name": "ciriti.androidshowcase"
         }
       },
       "oauth_client": [
         {
-          "client_id": "",
+          "client_id": "339870135866-cllc96ebrilirq2924gfa3dr9oimddrm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": ""
+          "current_key": "AIzaSyBSAPGi-F3MuZnTDmxp3DFjpWkDuGiCJr4"
         }
       ],
       "services": {
