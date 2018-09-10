@@ -8,6 +8,8 @@
 # Java class files
 *.class
 
+google-services.json
+
 # Generated files
 bin/
 gen/
