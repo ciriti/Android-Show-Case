@@ -3,7 +3,6 @@ package ciriti.androidshowcase
 import android.app.Activity
 import android.app.Application
 import ciriti.androidshowcase.di.DaggerAppComponent
-import com.google.firebase.FirebaseApp
 import com.squareup.leakcanary.LeakCanary
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
