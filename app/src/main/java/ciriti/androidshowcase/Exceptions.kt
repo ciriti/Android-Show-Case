@@ -14,4 +14,3 @@ class EmptyTopTracksList : RuntimeException()
 
 /** example */
 class WhateverRuntimeException : RuntimeException()
-

@@ -1,6 +1,6 @@
 package ciriti.datalayer.network
 
-import ciriti.datalayer.annotation.MakeItOpen
+import ciriti.datalayer.annotation.MakeItOpenForTest
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -27,13 +27,13 @@ data class Attr(
   val total: String
 )
 
-@MakeItOpen
+@MakeItOpenForTest
 data class TopTrack(
   @SerializedName("tracks")
   val tracks: Tracks
 )
 
-@MakeItOpen
+@MakeItOpenForTest
 data class Tracks(
   @SerializedName("track")
   val track: List<Track>,

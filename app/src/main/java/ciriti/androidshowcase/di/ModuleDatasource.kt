@@ -27,7 +27,7 @@ class ModuleDatasource {
 
   @Provides
   @Singleton
-  fun provideNetworkManager(app : TrackApplication) = NetworkManager(app)
+  fun provideNetworkManager(app: TrackApplication) = NetworkManager(app)
 
   @Provides
   @Singleton

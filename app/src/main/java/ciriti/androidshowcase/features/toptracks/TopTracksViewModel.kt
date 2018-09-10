@@ -2,6 +2,7 @@ package ciriti.androidshowcase.features.toptracks
 
 import androidx.lifecycle.MutableLiveData
 import ciriti.androidshowcase.core.components.FlatTrack
+import ciriti.androidshowcase.core.handleException
 import ciriti.androidshowcase.core.observeOnAndroidMT
 import ciriti.androidshowcase.core.plusAssign
 import ciriti.androidshowcase.core.subscribeOnWorkerT
@@ -9,16 +10,15 @@ import ciriti.androidshowcase.features.BaseViewModel
 import ciriti.androidshowcase.features.CurrencyState
 import ciriti.androidshowcase.features.DefaultState
 import ciriti.androidshowcase.features.ErrorState
+import ciriti.androidshowcase.features.LoadingState
 import ciriti.androidshowcase.features.NormalState
-import ciriti.datalayer.exception.NoNetworkException
-import java.security.InvalidParameterException
 import javax.inject.Inject
 
 /**
  * Created by ciriti
  */
 class TopTracksViewModel @Inject constructor(
-  val topTracksUseCase: TopTracksUseCase
+  private val topTracksUseCase: TopTracksUseCase
 ) : BaseViewModel() {
 
   val liveData by lazy { MutableLiveData<CurrencyState>() }
@@ -44,7 +44,7 @@ class TopTracksViewModel @Inject constructor(
         .updateTopTracks(limit)
         .subscribeOnWorkerT()
         .observeOnAndroidMT()
-        .doOnSubscribe { println("startloading") }
+        .doOnSubscribe { liveData.value = LoadingState(false) }
         .subscribe(this::onComplete, this::onError)
   }
 
@@ -53,20 +53,14 @@ class TopTracksViewModel @Inject constructor(
   }
 
   private fun onComplete() {
-    println("Complete")
+    liveData.value = LoadingState(false)
   }
 
+  /**
+   *  manage the exception
+   */
   private fun onError(error: Throwable) {
-    /**
-     *  manage the exception
-     */
-    when (error) {
-      is InvalidParameterException -> liveData.value =
-          ErrorState("InvalidParameterException", emptyList())
-      is NoNetworkException -> liveData.value = ErrorState("Offline mod active")
-      else -> liveData.value = ErrorState("Generic exception")
-    }
-
+    liveData.value = ErrorState(handleException(error))
   }
 
 }

@@ -48,7 +48,7 @@ android {
     }
 
     allOpen {
-        annotation("ciriti.datalayer.annotation.MakeItOpen")
+        annotation("ciriti.datalayer.annotation.MakeItOpenForTest")
     }
 
 }

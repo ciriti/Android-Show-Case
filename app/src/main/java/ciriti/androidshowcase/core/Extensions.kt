@@ -5,8 +5,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +20,8 @@ import ciriti.androidshowcase.core.components.BaseActivity
 import ciriti.androidshowcase.core.components.BaseFragment
 import ciriti.androidshowcase.core.components.FlatTrack
 import ciriti.androidshowcase.core.util.ImageViewBaseTarget
+import ciriti.androidshowcase.features.BaseViewModel
+import ciriti.datalayer.exception.NoNetworkException
 import ciriti.datalayer.network.Track
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -34,6 +34,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.fragmentContainer
+import java.security.InvalidParameterException
 
 /**
  * Created by ciriti
@@ -128,6 +129,7 @@ fun ImageView.loadUrlAndPostponeEnterTransition(
  * Rx extension
  */
 fun <T> Single<T>.subscribeOnWorkerT() = subscribeOn(Schedulers.computation())
+
 fun <T> Single<T>.observeOnAndroidMT() = observeOn(AndroidSchedulers.mainThread())
 fun <T> Flowable<T>.subscribeOnWorkerT() = subscribeOn(Schedulers.computation())
 fun <T> Flowable<T>.observeOnAndroidMT() = observeOn(AndroidSchedulers.mainThread())
@@ -158,7 +160,17 @@ fun Track.getFlatTrack(): FlatTrack {
   )
 }
 
-operator fun CompositeDisposable.plusAssign(disposable : Disposable){
+operator fun CompositeDisposable.plusAssign(disposable: Disposable) {
   this.add(disposable)
+}
+
+/**
+ *
+ */
+
+fun BaseViewModel.handleException(error: Throwable) = when (error) {
+  is InvalidParameterException -> "InvalidParameterException"
+  is NoNetworkException -> "Offline mod active"
+  else -> "Generic exception"
 }
 
