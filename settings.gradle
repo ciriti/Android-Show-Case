@@ -1,1 +1,1 @@
-include ':app', ':model', ':datalayer'
+include ':app', ':datalayer'
