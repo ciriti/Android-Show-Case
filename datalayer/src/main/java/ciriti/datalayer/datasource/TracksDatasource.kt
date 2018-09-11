@@ -30,15 +30,11 @@ class TracksDatasource(
   protected val networkManager: NetworkManager
 ) : ITracksDatasource {
 
-  init {
-    println()
-  }
-
   override fun updateTopTracks(limit: Int): Completable =
     networkManager
         .isConnected
         .flatMap {
-          if (it) throw NoNetworkException()
+          if (!it) throw NoNetworkException()
           networAdapter.getTopTracks(limit)
         }
         .map {

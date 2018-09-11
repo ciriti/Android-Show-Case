@@ -7,7 +7,6 @@ import ciriti.androidshowcase.R
 import ciriti.androidshowcase.core.components.FlatTrack
 import ciriti.androidshowcase.core.components.ViewTransitionInfo
 import ciriti.androidshowcase.core.inflate
-import ciriti.androidshowcase.core.loadFromUrl
 import kotlinx.android.synthetic.main.row_track.view.trackWall
 import javax.inject.Inject
 import kotlin.properties.Delegates
@@ -20,7 +19,7 @@ class TracksAdapter @Inject constructor() : RecyclerView.Adapter<TracksAdapter.V
   /**
    * Observable property - every time a change occur the listener is called
    */
-  private var collection: List<FlatTrack> by Delegates.observable(emptyList()) { _, _, _ ->
+  var collection: List<FlatTrack> by Delegates.observable(emptyList()) { _, _, _ ->
     notifyDataSetChanged()
   }
 
@@ -55,8 +54,14 @@ class TracksAdapter @Inject constructor() : RecyclerView.Adapter<TracksAdapter.V
       track: FlatTrack,
       clickListener: (FlatTrack, ViewTransitionInfo) -> Unit
     ) {
-      itemView.trackWall.loadFromUrl(track.imageUrl_M)
-      itemView.setOnClickListener { clickListener(track, ViewTransitionInfo(itemView.trackWall)) }
+      if (itemView is RowTrack) {
+        itemView.bind(track)
+      }
+      this.itemView.setOnClickListener {
+        clickListener(
+            track, ViewTransitionInfo(itemView.trackWall)
+        )
+      }
     }
   }
 }

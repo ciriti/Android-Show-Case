@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<ciriti.androidshowcase.features.toptracks.component.RowTrack
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/movieCard"
@@ -26,4 +26,4 @@
       android:orientation="horizontal"
       />
 
-</androidx.cardview.widget.CardView>
+</ciriti.androidshowcase.features.toptracks.component.RowTrack>

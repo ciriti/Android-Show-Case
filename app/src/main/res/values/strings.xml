@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">AndroidShowCase</string>
     <string name="track_wall_transition">trackWallTransition</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="network_connection_exception">No Network Connection.</string>
+    <string name="offline_active">Offline mode active.</string>
+    <string name="generic_error">Something went wrong.</string>
 </resources>

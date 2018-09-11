@@ -1,15 +1,16 @@
 package ciriti.androidshowcase.features
 
+import androidx.annotation.StringRes
 import ciriti.androidshowcase.core.components.FlatTrack
 
 /**
  * Created by ciriti
  */
 
-sealed class CurrencyState(val list: List<FlatTrack> = emptyList())
+sealed class BaseState
 
-data class DefaultState(val data: List<FlatTrack>) : CurrencyState(data)
-data class NormalState(val data: List<FlatTrack>) : CurrencyState(data)
-data class LoadingState(val isLoading : Boolean) : CurrencyState(emptyList())
-data class ErrorState(val errorMessage: String) : CurrencyState(emptyList())
+data class DefaultState(val data: List<FlatTrack>) : BaseState()
+data class CustomState(val data: List<FlatTrack>) : BaseState()
+data class LoadingState(val isLoading: Boolean) : BaseState()
+data class ErrorState(@StringRes val errorMessage: Int) : BaseState()
 

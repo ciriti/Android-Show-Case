@@ -9,6 +9,7 @@ import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
+import kotlinx.android.synthetic.main.toolbar.toolbar
 import javax.inject.Inject
 
 /**
@@ -19,16 +20,13 @@ class TopTracksActivity : AppCompatActivity(), HasSupportFragmentInjector {
   @Inject lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
   override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentInjector
 
-  init {
-
-  }
-
   override fun onCreate(savedInstanceState: Bundle?) {
 
     AndroidInjection.inject(this)
 
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
+    setSupportActionBar(toolbar)
     initilize(TopTracksFragment(), R.id.fragmentContainer)
   }
 
