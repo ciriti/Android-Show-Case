@@ -9,7 +9,6 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import ciriti.androidshowcase.R
 import ciriti.androidshowcase.core.components.BaseFragment
 import ciriti.androidshowcase.core.invisible
@@ -21,6 +20,7 @@ import ciriti.androidshowcase.features.ErrorState
 import ciriti.androidshowcase.features.LoadingState
 import ciriti.androidshowcase.features.toptracks.component.TracksAdapter
 import ciriti.androidshowcase.features.toptracks.component.configureCustomVisualization
+import ciriti.androidshowcase.features.toptracks.component.configureStandardVisualization
 import kotlinx.android.synthetic.main.fragment_top_track.emptyView
 import kotlinx.android.synthetic.main.fragment_top_track.trackList
 import javax.inject.Inject
@@ -58,8 +58,7 @@ class TopTracksFragment : BaseFragment() {
 
   fun init() {
 
-    trackList.layoutManager =
-        GridLayoutManager(activity, 2).apply { configureCustomVisualization() }
+    trackList.configureStandardVisualization()
 
     trackList.adapter = tracksAdapter
     tracksAdapter.clickListener = { movie, navigationExtras ->
