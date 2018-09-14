@@ -23,6 +23,6 @@ class TopTracksUseCase(
 
   }
 
-  fun updateTopTracks(limit: Int) = trackDatasource.updateTopTracks(limit)
+  fun updateTopTracks(limit: Int) = trackDatasource.loadTracks(limit)
 
 }

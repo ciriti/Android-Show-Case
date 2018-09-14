@@ -41,8 +41,8 @@ class TracksDatasourceTest {
         whenever(networAdapter.getTopTracks(10)).thenReturn(Single.just(topTrack))
 
         /** action to test */
-        datasource.updateTopTracks(10).test()
-        datasource.updateTopTracks(10).test()
+        datasource.loadTracks(10).test()
+        datasource.loadTracks(10).test()
 
         /** db is the object under test */
         verify(db, times(2)).saveCollection(list)

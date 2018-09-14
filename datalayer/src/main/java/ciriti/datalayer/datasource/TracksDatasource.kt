@@ -17,7 +17,7 @@ import io.reactivex.schedulers.Schedulers
 
 interface ITracksDatasource {
 
-  fun updateTopTracks(limit: Int): Completable
+  fun loadTracks(limit: Int): Completable
 
   fun observeTrackList(): BehaviorProcessor<List<Track>>
 
@@ -30,7 +30,7 @@ class TracksDatasource(
   protected val networkManager: NetworkManager
 ) : ITracksDatasource {
 
-  override fun updateTopTracks(limit: Int): Completable =
+  override fun loadTracks(limit: Int): Completable =
     networkManager
         .isConnected
         .flatMap {
