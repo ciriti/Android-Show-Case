@@ -6,12 +6,11 @@ import ciriti.androidshowcase.core.handleException
 import ciriti.androidshowcase.core.observeOnAndroidMT
 import ciriti.androidshowcase.core.plusAssign
 import ciriti.androidshowcase.core.subscribeOnWorkerT
+import ciriti.androidshowcase.features.BaseState
 import ciriti.androidshowcase.features.BaseViewModel
-import ciriti.androidshowcase.features.CurrencyState
 import ciriti.androidshowcase.features.DefaultState
 import ciriti.androidshowcase.features.ErrorState
 import ciriti.androidshowcase.features.LoadingState
-import ciriti.androidshowcase.features.NormalState
 import javax.inject.Inject
 
 /**
@@ -21,10 +20,11 @@ class TopTracksViewModel @Inject constructor(
   private val topTracksUseCase: TopTracksUseCase
 ) : BaseViewModel() {
 
-  val liveData by lazy { MutableLiveData<CurrencyState>() }
+  val liveData by lazy { MutableLiveData<BaseState>() }
 
   init {
     liveData.value = DefaultState(emptyList())
+    observeTopTracks()
   }
 
   fun clear() {
@@ -39,7 +39,7 @@ class TopTracksViewModel @Inject constructor(
         .subscribe(this::onSuccess, this::onError)
   }
 
-  fun loadTracks(limit: Int) {
+  fun loadTracks(limit: Int = 50) {
     topTracksUseCase
         .updateTopTracks(limit)
         .subscribeOnWorkerT()
@@ -49,7 +49,7 @@ class TopTracksViewModel @Inject constructor(
   }
 
   private fun onSuccess(res: List<FlatTrack>) {
-    liveData.value = NormalState(res)
+    liveData.value = DefaultState(res)
   }
 
   private fun onComplete() {

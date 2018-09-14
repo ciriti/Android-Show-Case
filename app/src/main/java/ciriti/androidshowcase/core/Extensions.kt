@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
+import ciriti.androidshowcase.R
 import ciriti.androidshowcase.core.components.BaseActivity
 import ciriti.androidshowcase.core.components.BaseFragment
 import ciriti.androidshowcase.core.components.FlatTrack
@@ -65,7 +66,7 @@ inline fun <reified T : AppCompatActivity> Context.invokeActivity() {
  */
 fun BaseFragment.close() = fragmentManager?.popBackStack()
 
-val BaseFragment.viewContainer: View get() = (activity as BaseActivity).fragmentContainer
+val BaseFragment.viewContainer: View get() = (activity as AppCompatActivity).fragmentContainer
 
 val BaseFragment.appContext: Context get() = activity?.applicationContext!!
 
@@ -168,9 +169,8 @@ operator fun CompositeDisposable.plusAssign(disposable: Disposable) {
  * Map the right message to the exception
  */
 fun BaseViewModel.handleException(error: Throwable) = when (error) {
-  is InvalidParameterException -> "InvalidParameterException"
-  is NoNetworkException -> "Offline mod active"
-  else -> "Generic exception"
+  is NoNetworkException -> R.string.offline_active
+  else -> R.string.generic_error
 }
 
 /**

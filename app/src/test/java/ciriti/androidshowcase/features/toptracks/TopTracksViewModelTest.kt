@@ -5,11 +5,11 @@ package ciriti.androidshowcase.features.toptracks
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import ciriti.androidshowcase.core.getFlatTrack
-import ciriti.androidshowcase.features.CurrencyState
+import ciriti.androidshowcase.features.BaseState
 import ciriti.androidshowcase.features.DefaultState
 import ciriti.androidshowcase.features.ErrorState
 import ciriti.androidshowcase.features.LoadingState
-import ciriti.androidshowcase.features.NormalState
+import ciriti.androidshowcase.features.CustomState
 import ciriti.datalayer.exception.NoNetworkException
 import ciriti.datalayer.network.TopTrack
 import io.reactivex.Completable
@@ -35,7 +35,7 @@ class TopTracksViewModelTest {
   @Rule @JvmField val rule = InstantTaskExecutorRule()
   @Rule fun mokitoRules() = MockitoJUnit.rule()
   @Mock lateinit var topTracksUseCase: TopTracksUseCase
-  @Mock lateinit var observer: Observer<CurrencyState>
+  @Mock lateinit var observer: Observer<BaseState>
 
   val viewModel by lazy { TopTracksViewModel(topTracksUseCase) }
 
@@ -81,7 +81,7 @@ class TopTracksViewModelTest {
 
     /** verify the result */
     Assert.assertTrue(viewModel.liveData.value is LoadingState)
-    Assert.assertFalse(viewModel.liveData.value is NormalState)
+    Assert.assertFalse(viewModel.liveData.value is CustomState)
     /** LoadingState has emptylist */
     Assert.assertTrue(viewModel.liveData.value?.list?.isEmpty() ?: false)
 
@@ -103,7 +103,7 @@ class TopTracksViewModelTest {
 
     /** verify the result */
     Assert.assertTrue(viewModel.liveData.value is ErrorState)
-    Assert.assertFalse(viewModel.liveData.value is NormalState)
+    Assert.assertFalse(viewModel.liveData.value is CustomState)
     /** LoadingState has empty list */
     Assert.assertTrue(viewModel.liveData.value?.list?.isEmpty() ?: false)
     /** check the right message related to the exception */
@@ -125,7 +125,7 @@ class TopTracksViewModelTest {
     viewModel.liveData.observeForever(observer)
     viewModel.loadTracks(list.size)
 
-    val argCaptor = ArgumentCaptor.forClass(CurrencyState::class.java)
+    val argCaptor = ArgumentCaptor.forClass(BaseState::class.java)
 
     argCaptor.run {
       Mockito.verify(observer, Mockito.times(3))
