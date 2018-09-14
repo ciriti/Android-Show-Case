@@ -61,8 +61,8 @@ class TopTracksFragment : BaseFragment() {
     trackList.configureStandardVisualization()
 
     trackList.adapter = tracksAdapter
-    tracksAdapter.clickListener = { movie, navigationExtras ->
-      //      navigator.showTrackDetails(activity!!, movie, navigationExtras)
+    tracksAdapter.clickListener = { track, navigationExtras ->
+      //      navigator.showTrackDetails(activity!!, track, navigationExtras)
     }
     topTracksViewModel
         .liveData
