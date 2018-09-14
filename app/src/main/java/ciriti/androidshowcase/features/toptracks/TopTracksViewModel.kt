@@ -40,7 +40,7 @@ class TopTracksViewModel @Inject constructor(
   }
 
   fun loadTracks(limit: Int = 50) {
-    topTracksUseCase
+    disposables += topTracksUseCase
         .updateTopTracks(limit)
         .subscribeOnWorkerT()
         .observeOnAndroidMT()

@@ -35,7 +35,7 @@ class TopTracksUseCaseTest {
     val processor: BehaviorProcessor<List<Track>> = BehaviorProcessor.create()
     processor.onNext(list)
 
-    whenever(trackDatasource.updateTopTracks(list.size)).thenReturn(Completable.complete())
+    whenever(trackDatasource.loadTracks(list.size)).thenReturn(Completable.complete())
     whenever(trackDatasource.observeTrackList()).thenReturn(processor)
 
     val test = useCase.observeTopTrackList()
