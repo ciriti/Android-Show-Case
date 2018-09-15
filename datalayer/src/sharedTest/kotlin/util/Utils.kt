@@ -26,7 +26,7 @@ inline fun<reified K> String.createListObjByJsonFile() : K{
  * Receive file.json and return the content as string
  */
 fun String.jsonFile2String() : String{
-    val inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(this)
+    val inputStream = Thread.currentThread().contextClassLoader.getResourceAsStream(this)
     val byteSource = object : ByteSource() {
         override fun openStream(): InputStream {
             return inputStream
