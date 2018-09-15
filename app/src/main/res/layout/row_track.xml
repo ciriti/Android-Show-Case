@@ -2,6 +2,7 @@
 <ciriti.androidshowcase.features.toptracks.component.RowTrack
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/movieCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -18,12 +19,44 @@
       />
 
   <!-- ripple effect on touch -->
-  <LinearLayout
+  <androidx.constraintlayout.widget.ConstraintLayout
       android:id="@+id/trackHolder"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:background="@drawable/ripple_effect"
       android:orientation="horizontal"
-      />
+      >
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/TrackWallText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        card_view:layout_constraintBottom_toTopOf="@+id/tv_artist"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintHorizontal_bias="0.026"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent"
+        card_view:layout_constraintVertical_bias="1.0"
+        tools:text="TextView"
+        />
+    <TextView
+        android:id="@+id/tv_artist"
+        style="@style/TrackWallText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        tools:text="TextView"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintHorizontal_bias="0.026"
+        card_view:layout_constraintStart_toStartOf="parent"
+        />
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ciriti.androidshowcase.features.toptracks.component.RowTrack>

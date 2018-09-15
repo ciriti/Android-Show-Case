@@ -1,7 +1,6 @@
 package ciriti.androidshowcase.core.components
 
 import android.content.Context
-import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
@@ -34,16 +33,12 @@ abstract class BaseFragment : Fragment(), HasSupportFragmentInjector {
     AndroidSupportInjection.inject(this)
   }
 
-  open fun onBackPressed() {}
-
-  internal fun firstTimeCreated(savedInstanceState: Bundle?) = savedInstanceState == null
-
-  internal fun showProgress() {
+  fun showProgress() {
     swiperefresh.isRefreshing = true
     progressStatus(View.VISIBLE)
   }
 
-  internal fun hideProgress() {
+  fun hideProgress() {
     swiperefresh.isRefreshing = false
     progressStatus(View.GONE)
   }
@@ -55,13 +50,11 @@ abstract class BaseFragment : Fragment(), HasSupportFragmentInjector {
       }
     }
 
-  internal fun notify(@StringRes message: Int) =
-    Snackbar.make(viewContainer, message, Snackbar.LENGTH_SHORT).show()
-
-  internal fun notifyWithAction(@StringRes message: Int, @StringRes actionText: Int, action: () -> Any) {
+  fun notifyWithAction(@StringRes message: Int, @StringRes actionText: Int, action: () -> Any) {
     val snackBar = Snackbar.make(viewContainer, message, Snackbar.LENGTH_INDEFINITE)
-    snackBar.setAction(actionText) { _ -> action.invoke() }
+    snackBar.setAction(actionText) { _ -> action() }
     snackBar.setActionTextColor(ContextCompat.getColor(appContext, R.color.colorTextPrimary))
     snackBar.show()
+    view?.postDelayed({ snackBar.dismiss() }, 5000)
   }
 }
