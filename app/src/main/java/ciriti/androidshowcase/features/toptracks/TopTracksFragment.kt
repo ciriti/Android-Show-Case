@@ -9,9 +9,9 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import ciriti.androidshowcase.R
-import ciriti.androidshowcase.core.setColorsSwipeRefresh
 import ciriti.androidshowcase.core.components.BaseFragment
 import ciriti.androidshowcase.core.invisible
+import ciriti.androidshowcase.core.setColorsSwipeRefresh
 import ciriti.androidshowcase.core.util.Navigator
 import ciriti.androidshowcase.core.visible
 import ciriti.androidshowcase.features.CustomState
@@ -80,8 +80,6 @@ class TopTracksFragment : BaseFragment() {
   }
 
   private fun loadTracksList() {
-    emptyView.invisible()
-    trackList.visible()
     showProgress()
     topTracksViewModel.loadTracks()
     swiperefresh.setOnRefreshListener { topTracksViewModel.loadTracks() }
@@ -89,6 +87,7 @@ class TopTracksFragment : BaseFragment() {
 
   private fun showData(state: DefaultState) {
     tracksAdapter.collection = state.data
+    checkVisibility()
   }
 
   private fun progressState(state: LoadingState) = when (state.isLoading) {
@@ -97,10 +96,21 @@ class TopTracksFragment : BaseFragment() {
   }
 
   private fun errorHandler(@StringRes message: Int) {
-    trackList.invisible()
-    emptyView.visible()
+    checkVisibility()
     hideProgress()
     notifyWithAction(message, R.string.action_refresh, ::loadTracksList)
+  }
+
+  fun checkVisibility(){
+    tracksAdapter.apply {
+      if (collection.isEmpty()) {
+        trackList.invisible()
+        emptyView.visible()
+      }else{
+        trackList.visible()
+        emptyView.invisible()
+      }
+    }
   }
 
 }

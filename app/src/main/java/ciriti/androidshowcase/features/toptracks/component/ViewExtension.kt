@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import ciriti.androidshowcase.core.components.FlatTrack
 import ciriti.androidshowcase.core.loadFromUrl
 import kotlinx.android.synthetic.main.row_track.view.trackWall
+import kotlinx.android.synthetic.main.row_track.view.tv_artist
+import kotlinx.android.synthetic.main.row_track.view.tv_title
 
 /**
  * Created by ciriti
@@ -13,6 +15,8 @@ import kotlinx.android.synthetic.main.row_track.view.trackWall
 
 fun RowTrack.bind(track: FlatTrack) {
   trackWall.loadFromUrl(track.imageUrl_XL)
+  tv_artist.text = track.artistName
+  tv_title.text = track.title
 }
 
 fun RecyclerView.configureCustomVisualization() {
