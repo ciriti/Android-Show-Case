@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.GridLayoutManager
 import ciriti.androidshowcase.R
+import ciriti.androidshowcase.core.setColorsSwipeRefresh
 import ciriti.androidshowcase.core.components.BaseFragment
 import ciriti.androidshowcase.core.invisible
 import ciriti.androidshowcase.core.util.Navigator
@@ -19,9 +19,9 @@ import ciriti.androidshowcase.features.DefaultState
 import ciriti.androidshowcase.features.ErrorState
 import ciriti.androidshowcase.features.LoadingState
 import ciriti.androidshowcase.features.toptracks.component.TracksAdapter
-import ciriti.androidshowcase.features.toptracks.component.configureCustomVisualization
 import ciriti.androidshowcase.features.toptracks.component.configureStandardVisualization
 import kotlinx.android.synthetic.main.fragment_top_track.emptyView
+import kotlinx.android.synthetic.main.fragment_top_track.swiperefresh
 import kotlinx.android.synthetic.main.fragment_top_track.trackList
 import javax.inject.Inject
 
@@ -52,6 +52,7 @@ class TopTracksFragment : BaseFragment() {
     view: View,
     savedInstanceState: Bundle?
   ) {
+    setColorsSwipeRefresh(R.color.swipe_green, R.color.swipe_yellow, R.color.swipe_red)
     init()
     loadTracksList()
   }
@@ -83,6 +84,7 @@ class TopTracksFragment : BaseFragment() {
     trackList.visible()
     showProgress()
     topTracksViewModel.loadTracks()
+    swiperefresh.setOnRefreshListener { topTracksViewModel.loadTracks() }
   }
 
   private fun showData(state: DefaultState) {

@@ -5,17 +5,21 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.os.Build
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.annotation.ColorRes
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import ciriti.androidshowcase.R
 import ciriti.androidshowcase.core.components.BaseActivity
 import ciriti.androidshowcase.core.components.BaseFragment
@@ -36,6 +40,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subscribers.TestSubscriber
 import kotlinx.android.synthetic.main.activity_main.fragmentContainer
+import kotlinx.android.synthetic.main.fragment_top_track.swiperefresh
 import java.security.InvalidParameterException
 
 /**
@@ -177,3 +182,9 @@ fun BaseViewModel.handleException(error: Throwable) = when (error) {
  * RxJava test extension - return the first event received
  */
 fun <T> TestSubscriber<T>.firstValues() = this.values().first()
+
+fun Fragment.getColor(@ColorRes colorId : Int) = ContextCompat.getColor(context!!, colorId)
+
+fun BaseFragment.setColorsSwipeRefresh(@ColorRes vararg colors : Int){
+  swiperefresh.setColorSchemeResources(*colors)
+}

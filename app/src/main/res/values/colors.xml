@@ -7,4 +7,7 @@
     <color name="colorTextPrimary">#FFFFFF</color>
     <color name="colorTextSecondary">#7f1a18</color>
     <color name="translucentBackground">#ED000000</color>
+    <color name="swipe_green">#ed59a13f</color>
+    <color name="swipe_yellow">#e6d241</color>
+    <color name="swipe_red">#ea4239</color>
 </resources>

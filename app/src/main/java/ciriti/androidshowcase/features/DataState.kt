@@ -13,4 +13,3 @@ data class DefaultState(val data: List<FlatTrack>) : BaseState()
 data class CustomState(val data: List<FlatTrack>) : BaseState()
 data class LoadingState(val isLoading: Boolean) : BaseState()
 data class ErrorState(@StringRes val errorMessage: Int) : BaseState()
-
