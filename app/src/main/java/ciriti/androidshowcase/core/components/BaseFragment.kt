@@ -7,16 +7,15 @@ import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import ciriti.androidshowcase.R
 import ciriti.androidshowcase.core.appContext
 import ciriti.androidshowcase.core.viewContainer
-import ciriti.androidshowcase.features.toptracks.TopTracksViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
+import kotlinx.android.synthetic.main.fragment_top_track.swiperefresh
 import kotlinx.android.synthetic.main.toolbar.progress
 import javax.inject.Inject
 
@@ -39,12 +38,22 @@ abstract class BaseFragment : Fragment(), HasSupportFragmentInjector {
 
   internal fun firstTimeCreated(savedInstanceState: Bundle?) = savedInstanceState == null
 
-  internal fun showProgress() = progressStatus(View.VISIBLE)
+  internal fun showProgress() {
+    swiperefresh.isRefreshing = true
+    progressStatus(View.VISIBLE)
+  }
 
-  internal fun hideProgress() = progressStatus(View.GONE)
+  internal fun hideProgress() {
+    swiperefresh.isRefreshing = false
+    progressStatus(View.GONE)
+  }
 
   private fun progressStatus(viewStatus: Int) =
-    with(activity) { if (this is BaseActivity) this.progress.visibility = viewStatus }
+    with(activity) {
+      if (this is BaseActivity) {
+        this.progress.visibility = viewStatus
+      }
+    }
 
   internal fun notify(@StringRes message: Int) =
     Snackbar.make(viewContainer, message, Snackbar.LENGTH_SHORT).show()
