@@ -10,7 +10,7 @@ import java.io.Serializable
 data class ViewTransitionInfo(val transitionSharedElement: View)
 
 data class FlatTrack(
-  val name: String = "",
+  val title: String = "",
   val duration: String = "",
   val playcount: String = "",
   val listeners: String = "",

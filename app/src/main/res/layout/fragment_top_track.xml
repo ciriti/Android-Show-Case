@@ -25,8 +25,8 @@
         android:layout_height="match_parent"
         android:paddingBottom="160dp"
         android:scaleType="center"
-        android:src="@drawable/ic_lp_45"
-        android:visibility="gone"
+        android:src="@drawable/ic_music_note_black_100dp"
+        android:visibility="visible"
         />
 
   </androidx.constraintlayout.widget.ConstraintLayout>

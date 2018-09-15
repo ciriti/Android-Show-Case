@@ -12,13 +12,12 @@ import ciriti.androidshowcase.core.components.ViewTransitionInfo
 import ciriti.androidshowcase.core.empty
 import ciriti.androidshowcase.core.invokeActivity
 import ciriti.androidshowcase.features.toptracks.TopTracksActivity
-import ciriti.androidshowcase.features.toptracks.component.TrackViewInfo
 
 /**
  * Created by ciriti
  */
 
-class Navigator(val session: Session) {
+class Navigator(private val session: Session) {
 
   private fun showLogin(context: Context) = context.startActivity(
       null

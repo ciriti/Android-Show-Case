@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.os.Build
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
@@ -19,9 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import ciriti.androidshowcase.R
-import ciriti.androidshowcase.core.components.BaseActivity
 import ciriti.androidshowcase.core.components.BaseFragment
 import ciriti.androidshowcase.core.components.FlatTrack
 import ciriti.androidshowcase.core.util.ImageViewBaseTarget
@@ -41,7 +38,6 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subscribers.TestSubscriber
 import kotlinx.android.synthetic.main.activity_main.fragmentContainer
 import kotlinx.android.synthetic.main.fragment_top_track.swiperefresh
-import java.security.InvalidParameterException
 
 /**
  * Created by ciriti
@@ -151,7 +147,7 @@ fun Track.getFlatTrack(): FlatTrack {
       }
 
   return FlatTrack(
-      name = this.name,
+      title = this.name,
       artistName = this.artist?.name ?: "",
       artistUrl = this.artist?.url ?: "",
       duration = this.duration,

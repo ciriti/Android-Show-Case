@@ -33,6 +33,12 @@
     <item name="android:background">@color/colorPrimary</item>
   </style>
 
+  <style name="TrackWallText">
+    <item name="android:background">@color/text_bg_transparent</item>
+    <item name="android:textColor">@color/colorTextPrimary</item>
+    <item name="android:padding">3dp</item>
+  </style>
+
   <style name="AppTheme.Translucent" parent="AppTheme">
     <item name="windowNoTitle">true</item>
     <item name="windowActionBar">false</item>
