@@ -21,7 +21,7 @@ class DatabaseTest {
 
     @Test
     fun `test subscription to get update`(){
-        val collection = "top_tracks.json".createGsonObj<TopTrack>().tracks.track
+        val collection = "top_tracks.json".createGsonObj<TopTrack>().tracks.list
         db.saveCollection(collection)
         val test = db.getCollection().test()
         test.assertNoErrors()
@@ -37,7 +37,7 @@ class DatabaseTest {
 
     @Test
     fun `test subscription to a track by name`(){
-        val collection = "top_tracks.json".createGsonObj<TopTrack>().tracks.track
+        val collection = "top_tracks.json".createGsonObj<TopTrack>().tracks.list
         db.saveCollection(collection)
         val test = db.getTrackByName(collection[0].name).test()
         test.assertNoErrors()

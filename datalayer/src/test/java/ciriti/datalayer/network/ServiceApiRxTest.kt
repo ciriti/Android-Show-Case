@@ -23,7 +23,7 @@ class ServiceApiRxTest {
     @Test
     fun `test resp network adapter`(){
         var test = retrofit.getTopTracks(10).test()
-        Assert.assertEquals(10,   ((test.events[0][0]) as TopTrack).tracks.track.size)
+        Assert.assertEquals(10,   ((test.events[0][0]) as TopTrack).tracks.list.size)
         test.assertNoErrors()
     }
 }

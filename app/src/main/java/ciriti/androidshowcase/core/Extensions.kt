@@ -194,6 +194,12 @@ fun BaseFragment.setColorsSwipeRefresh(@ColorRes vararg colors: Int) {
 val Context.preferences: SharedPreferences
   get() = PreferenceManager.getDefaultSharedPreferences(this)
 
+val storeKey = "cache"
+
+var SharedPreferences.cachedTracks : String
+get() = this.getString(storeKey, "{}")!!
+set(value) = edit().putString(storeKey, value).apply()
+
 inline fun <reified K> String.createListObjByJsonFile(): K {
   val typeToken = object : TypeToken<K>() {}.type
   val jsonString = this

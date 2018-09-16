@@ -13,7 +13,7 @@ class TopArtistParseTest {
     fun topTracksFileParse(){
         val list = "top_tracks.json".createGsonObj<TopTrack>()
         Assert.assertNotNull(list.tracks)
-        Assert.assertFalse(list.tracks.track.isEmpty())
+        Assert.assertFalse(list.tracks.list.isEmpty())
     }
 
     @Test

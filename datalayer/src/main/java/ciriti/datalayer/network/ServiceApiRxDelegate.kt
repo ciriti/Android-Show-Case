@@ -17,7 +17,7 @@ class ServiceApiRxDelegateServiceApiRx(val service: ServiceApiRx) : ServiceApiRx
           it.apply {
             /** the rank doesn't come from the BE,
              * it is implicit, the rank match with the index of each element  */
-            tracks.track.mapIndexed { index, track -> track.rank = (index + 1) }
+            tracks.list.mapIndexed { index, track -> track.rank = (index + 1) }
           }
         }
 
