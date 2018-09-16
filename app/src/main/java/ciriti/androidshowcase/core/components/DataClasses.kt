@@ -21,5 +21,6 @@ data class FlatTrack(
   val imageUrl_S: String = "",
   val imageUrl_M: String = "",
   val imageUrl_L: String = "",
-  val imageUrl_XL: String = ""
+  val imageUrl_XL: String = "",
+  val time: String = ""
 ) : Serializable

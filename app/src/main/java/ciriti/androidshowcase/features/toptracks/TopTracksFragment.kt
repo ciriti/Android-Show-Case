@@ -58,13 +58,16 @@ class TopTracksFragment : BaseFragment() {
   }
 
   fun init() {
-
+    /** Ext. used to configure the layout of the recyclerview */
     trackList.configureStandardVisualization()
-
+    /** enable the viewmodel to receive update from the DB */
+    topTracksViewModel.observeTopTracks()
     trackList.adapter = tracksAdapter
+    /** click listener for recyclerview */
     tracksAdapter.clickListener = { track, navigationExtras ->
       //      navigator.showTrackDetails(activity!!, track, navigationExtras)
     }
+    /** connection channel with viewmodel */
     topTracksViewModel
         .liveData
         .observe(this, Observer {
@@ -101,12 +104,12 @@ class TopTracksFragment : BaseFragment() {
     notifyWithAction(message, R.string.action_refresh, ::loadTracksList)
   }
 
-  fun checkVisibility(){
+  fun checkVisibility() {
     tracksAdapter.apply {
       if (collection.isEmpty()) {
         trackList.invisible()
         emptyView.visible()
-      }else{
+      } else {
         trackList.visible()
         emptyView.invisible()
       }

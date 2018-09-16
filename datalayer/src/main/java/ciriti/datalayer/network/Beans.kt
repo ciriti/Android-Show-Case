@@ -1,6 +1,7 @@
 package ciriti.datalayer.network
 
 import ciriti.datalayer.annotation.MakeItOpenForTest
+import ciriti.datalayer.util.minSec
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -59,7 +60,8 @@ data class Track(
   @SerializedName("artist")
   val artist: Artist? = null,
   @SerializedName("image")
-  val image: List<Image> = emptyList()
+  val image: List<Image> = emptyList(),
+  val timestamp: String = String.minSec
 )
 
 data class Streamable(
