@@ -161,7 +161,7 @@ fun Track.getFlatTrack(): FlatTrack {
       mbid = this.mbid,
       playcount = this.playcount,
       url = this.url,
-      time = this.minSec
+      time = this.timestamp
   )
 }
 
@@ -201,11 +201,3 @@ inline fun <reified K> String.createListObjByJsonFile(): K {
   var objs: K = Gson().fromJson<K>(jsonString, typeToken)
   return objs
 }
-
-/**
- * Timestamp
- */
-
-val Any.minSec: String
-  get() = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(System.currentTimeMillis())
-
