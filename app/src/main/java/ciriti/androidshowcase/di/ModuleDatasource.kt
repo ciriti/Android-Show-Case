@@ -12,6 +12,7 @@ import ciriti.datalayer.database.Database
 import ciriti.datalayer.datasource.TracksDatasource
 import ciriti.datalayer.datasource.UserDatasource
 import ciriti.datalayer.network.ServiceApiRx
+import ciriti.datalayer.network.ServiceApiRxDelegateServiceApiRx
 import ciriti.datalayer.network.Track
 import ciriti.datalayer.util.NetworkManager
 import dagger.Module
@@ -36,12 +37,24 @@ class ModuleDatasource {
   @Singleton
   fun provideDatabase() = Database()
 
+  /**
+   * Example of delegate to implement decorator pattern for Database
+   */
   @Provides
   @Singleton
   fun provideDBDelegate(
     app: TrackApplication,
     db: Database
   ) = DBDelegate(app, db)
+
+  /**
+   * Example of delegate to implement decorator pattern for NetworkAdapter
+   */
+  @Provides
+  @Singleton
+  fun provideServiceApiRxDelegateServiceApiRx(
+    retrofirAdapter : ServiceApiRx
+  ) = ServiceApiRxDelegateServiceApiRx(retrofirAdapter)
 
   @Provides
   @Singleton
@@ -51,7 +64,7 @@ class ModuleDatasource {
   @Singleton
   fun provideTracksDatasource(
     database: DBDelegate,
-    service: ServiceApiRx,
+    service: ServiceApiRxDelegateServiceApiRx,
     networkManager: NetworkManager
   ) = TracksDatasource(service, database, networkManager)
 

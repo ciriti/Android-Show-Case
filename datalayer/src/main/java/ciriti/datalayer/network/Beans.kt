@@ -61,7 +61,8 @@ data class Track(
   val artist: Artist? = null,
   @SerializedName("image")
   val image: List<Image> = emptyList(),
-  val timestamp: String = String.minSec
+  val timestamp: String = String.minSec,
+  var rank: Int = 0
 )
 
 data class Streamable(

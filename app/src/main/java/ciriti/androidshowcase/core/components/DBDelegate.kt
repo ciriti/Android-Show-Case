@@ -14,10 +14,10 @@ import io.reactivex.processors.BehaviorProcessor
  */
 
 /**
- * This is an example of delegation in kotlin.
- * To
+ * This class is using the Delegate property to implement the Decorator Pattern.
+ *
+ * The structure of this class also follow the "Open Close principle" from SOLID principle
  */
-
 class DBDelegate(
   val context: Context,
   private val db: IDatabase
