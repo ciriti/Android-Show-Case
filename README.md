@@ -15,7 +15,7 @@ I've chosen the following [Code Styles](https://github.com/square/java-code-styl
 ##### Offline Capabilities
 
 I implemented a simple mechanism to support offline Capabilities.
-The logic is inside the implementation of DBDelegate.kt.
+The logic is inside the implementation of [DBDelegate.kt](Android-Show-Case/app/src/main/java/ciriti/androidshowcase/core/components/DBDelegate.kt).
 As the name suggests, to add this feature, I used a simple implementation
 of the [Decorator Pattern](https://en.wikipedia.org/wiki/Decorator_pattern)
 using the [class delegation](https://kotlinlang.org/docs/reference/delegation.html)
