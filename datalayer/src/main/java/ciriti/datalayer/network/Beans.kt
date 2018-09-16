@@ -37,7 +37,7 @@ data class TopTrack(
 @MakeItOpenForTest
 data class Tracks(
   @SerializedName("track")
-  val track: List<Track>,
+  val list: List<Track>,
   @SerializedName("attr")
   val attr: Attr
 )

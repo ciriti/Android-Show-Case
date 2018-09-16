@@ -65,7 +65,7 @@ class TopTracksFragment : BaseFragment() {
     trackList.adapter = tracksAdapter
     /** click listener for recyclerview */
     tracksAdapter.clickListener = { track, navigationExtras ->
-      //      navigator.showTrackDetails(activity!!, track, navigationExtras)
+      //      navigator.showTrackDetails(activity!!, list, navigationExtras)
     }
     /** connection channel with viewmodel */
     topTracksViewModel

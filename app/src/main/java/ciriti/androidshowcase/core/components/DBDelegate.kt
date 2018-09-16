@@ -1,6 +1,7 @@
 package ciriti.androidshowcase.core.components
 
 import android.content.Context
+import ciriti.androidshowcase.core.cachedTracks
 import ciriti.androidshowcase.core.createListObjByJsonFile
 import ciriti.androidshowcase.core.preferences
 import ciriti.datalayer.database.IDatabase
@@ -23,24 +24,20 @@ class DBDelegate(
   private val db: IDatabase
 ) : IDatabase by db { // Delegate
 
-  private val storeKey = "cache"
-
   /**
    * I'm decorating saveCollection method using SharedPreferences to cache the data
    */
   override fun saveCollection(tracks: List<Track>) {
     db.saveCollection(tracks)
     val listString = Gson().toJson(tracks)
-    context.preferences.edit()
-        .putString(storeKey, listString)
-        .apply()
+    context.preferences.cachedTracks = listString
   }
 
   /**
    * I'm decorating getCollection method using SharedPreferences to get from preferences the data
    */
   override fun getCollection(): BehaviorProcessor<List<Track>> {
-    val cachedList: String = context.preferences.getString(storeKey, "")!!
+    val cachedList: String = context.preferences.cachedTracks?:""
     if (cachedList.isNotEmpty()) {
       val tracks = cachedList.createListObjByJsonFile<List<Track>>()
       db.saveCollection(tracks)
