@@ -7,9 +7,7 @@ import ciriti.datalayer.network.ServiceApiRx
 import ciriti.datalayer.network.Track
 import ciriti.datalayer.util.NetworkManager
 import io.reactivex.Completable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.processors.BehaviorProcessor
-import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by ciriti
@@ -38,11 +36,8 @@ class TracksDatasource(
           networAdapter.getTopTracks(limit)
         }
         .map {
-          database.saveCollection(it.tracks.track)
+          database.saveCollection(it.tracks.list)
         }
-        .subscribeOn(Schedulers.computation())
-        .observeOn(AndroidSchedulers.mainThread())
-
         .toCompletable()
 
   override fun observeTrackList() = database.getCollection()

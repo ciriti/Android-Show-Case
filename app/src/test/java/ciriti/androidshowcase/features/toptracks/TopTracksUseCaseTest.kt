@@ -30,7 +30,7 @@ class TopTracksUseCaseTest {
 
     /** creating a list from a jason file */
     val list = "top_tracks.json".createGsonObj<TopTrack>()
-        .tracks.track
+        .tracks.list
 
     val processor: BehaviorProcessor<List<Track>> = BehaviorProcessor.create()
     processor.onNext(list)

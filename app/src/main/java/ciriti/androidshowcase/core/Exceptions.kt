@@ -6,7 +6,7 @@ package ciriti.androidshowcase.core
 
 /**
  * This file will host all the exception that could be used in the view layer
- * in order to handle view side (like show a popup if the list of top track is empty)
+ * in order to handle view side (like show a popup if the list of top list is empty)
  * specific conditions
  */
 

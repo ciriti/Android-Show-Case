@@ -4,6 +4,7 @@ package ciriti.androidshowcase.features.toptracks
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import ciriti.androidshowcase.R
 import ciriti.androidshowcase.core.getFlatTrack
 import ciriti.androidshowcase.features.BaseState
 import ciriti.androidshowcase.features.CustomState
@@ -51,7 +52,7 @@ class TopTracksViewModelTest {
 
     /** creating a list from a jason file */
     val list = "top_tracks.json".createGsonObj<TopTrack>()
-        .tracks.track.map { it.getFlatTrack() }
+        .tracks.list.map { it.getFlatTrack() }
 
     /** set the list to the mock object */
     Mockito.`when`(topTracksUseCase.observeTopTrackList())
@@ -70,7 +71,7 @@ class TopTracksViewModelTest {
 
     /** creating a list from a jason file */
     val list = "top_tracks.json".createGsonObj<TopTrack>()
-        .tracks.track.map { it.getFlatTrack() }
+        .tracks.list.map { it.getFlatTrack() }
 
     /** set the list to the mock object */
     Mockito.`when`(topTracksUseCase.updateTopTracks(limit = list.size))
@@ -90,7 +91,7 @@ class TopTracksViewModelTest {
 
     /** creating a list from a jason file */
     val list = "top_tracks.json".createGsonObj<TopTrack>()
-        .tracks.track.map { it.getFlatTrack() }
+        .tracks.list.map { it.getFlatTrack() }
 
     /** set the list to the mock object */
     Mockito.`when`(topTracksUseCase.updateTopTracks(limit = list.size))
@@ -103,7 +104,7 @@ class TopTracksViewModelTest {
     Assert.assertTrue(viewModel.liveData.value is ErrorState)
     Assert.assertFalse(viewModel.liveData.value is CustomState)
     /** check the right message related to the exception */
-    Assert.assertEquals("Offline mod active", (viewModel.liveData.value as ErrorState).errorMessage)
+    Assert.assertEquals(R.string.offline_active, (viewModel.liveData.value as ErrorState).errorMessage)
 
   }
 
@@ -112,7 +113,7 @@ class TopTracksViewModelTest {
 
     /** creating a list from a jason file */
     val list = "top_tracks.json".createGsonObj<TopTrack>()
-        .tracks.track.map { it.getFlatTrack() }
+        .tracks.list.map { it.getFlatTrack() }
 
     /** set the list to the mock object */
     Mockito.`when`(topTracksUseCase.updateTopTracks(limit = list.size))
