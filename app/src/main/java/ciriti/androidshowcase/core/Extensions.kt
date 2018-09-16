@@ -196,8 +196,8 @@ val Context.preferences: SharedPreferences
 
 val storeKey = "cache"
 
-var SharedPreferences.cachedTracks : String
-get() = this.getString(storeKey, "{}")!!
+var SharedPreferences.cachedTracks : String?
+get() = this.getString(storeKey, null)
 set(value) = edit().putString(storeKey, value).apply()
 
 inline fun <reified K> String.createListObjByJsonFile(): K {

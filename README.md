@@ -32,6 +32,9 @@ which provides an interface and a default implementation. The class I provide is
 **final** but it leaves you the option of creating your own implementation to
 use it in the application - without causing crash.
 
+This approach makes the application maintainable and scalable. It also makes
+easy to test as you can see in [DBDelegateTest.kt](app/src/androidTest/java/ciriti/androidshowcase/core/components/DBDelegateTest.kt)
+
 
 ### Architecture:
 
