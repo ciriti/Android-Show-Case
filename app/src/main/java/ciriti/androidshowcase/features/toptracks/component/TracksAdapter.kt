@@ -44,7 +44,7 @@ class TracksAdapter @Inject constructor() : RecyclerView.Adapter<TracksAdapter.V
   override fun onBindViewHolder(
     holder: ViewHolder,
     position: Int
-  ) = holder.bind(collection[position], clickListener)
+  ) = holder.bind(collection[position], position, clickListener)
 
   /**
    * Holder class
@@ -52,10 +52,11 @@ class TracksAdapter @Inject constructor() : RecyclerView.Adapter<TracksAdapter.V
   class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
     fun bind(
       track: FlatTrack,
+      position : Int,
       clickListener: (FlatTrack, ViewTransitionInfo) -> Unit
     ) {
       if (itemView is RowTrack) {
-        itemView.bind(track)
+        itemView.bind(track, (position + 1 ).toString())
       }
       this.itemView.setOnClickListener {
         clickListener(

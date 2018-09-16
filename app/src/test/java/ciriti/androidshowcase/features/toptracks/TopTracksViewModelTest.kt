@@ -6,10 +6,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import ciriti.androidshowcase.core.getFlatTrack
 import ciriti.androidshowcase.features.BaseState
+import ciriti.androidshowcase.features.CustomState
 import ciriti.androidshowcase.features.DefaultState
 import ciriti.androidshowcase.features.ErrorState
 import ciriti.androidshowcase.features.LoadingState
-import ciriti.androidshowcase.features.CustomState
 import ciriti.datalayer.exception.NoNetworkException
 import ciriti.datalayer.network.TopTrack
 import io.reactivex.Completable
@@ -61,7 +61,7 @@ class TopTracksViewModelTest {
     viewModel.observeTopTracks()
 
     /** verify the result */
-    Assert.assertEquals(list.size, viewModel.liveData.value?.list?.size)
+    Assert.assertTrue(viewModel.liveData.value is DefaultState)
 
   }
 
@@ -82,8 +82,6 @@ class TopTracksViewModelTest {
     /** verify the result */
     Assert.assertTrue(viewModel.liveData.value is LoadingState)
     Assert.assertFalse(viewModel.liveData.value is CustomState)
-    /** LoadingState has emptylist */
-    Assert.assertTrue(viewModel.liveData.value?.list?.isEmpty() ?: false)
 
   }
 
@@ -104,8 +102,6 @@ class TopTracksViewModelTest {
     /** verify the result */
     Assert.assertTrue(viewModel.liveData.value is ErrorState)
     Assert.assertFalse(viewModel.liveData.value is CustomState)
-    /** LoadingState has empty list */
-    Assert.assertTrue(viewModel.liveData.value?.list?.isEmpty() ?: false)
     /** check the right message related to the exception */
     Assert.assertEquals("Offline mod active", (viewModel.liveData.value as ErrorState).errorMessage)
 

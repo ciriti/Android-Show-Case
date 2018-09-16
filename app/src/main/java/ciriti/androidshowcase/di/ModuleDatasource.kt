@@ -1,8 +1,10 @@
 package ciriti.androidshowcase.di
 
+import android.content.Context
 import android.content.SharedPreferences
 import ciriti.androidshowcase.BuildConfig
 import ciriti.androidshowcase.TrackApplication
+import ciriti.androidshowcase.core.components.DBDelegate
 import ciriti.androidshowcase.core.preferences
 import ciriti.androidshowcase.core.util.Navigator
 import ciriti.androidshowcase.core.util.Session
@@ -10,6 +12,7 @@ import ciriti.datalayer.database.Database
 import ciriti.datalayer.datasource.TracksDatasource
 import ciriti.datalayer.datasource.UserDatasource
 import ciriti.datalayer.network.ServiceApiRx
+import ciriti.datalayer.network.Track
 import ciriti.datalayer.util.NetworkManager
 import dagger.Module
 import dagger.Provides
@@ -35,12 +38,19 @@ class ModuleDatasource {
 
   @Provides
   @Singleton
+  fun provideDBDelegate(
+    app: TrackApplication,
+    db: Database
+  ) = DBDelegate(app, db)
+
+  @Provides
+  @Singleton
   fun provideServiceApiRx(): ServiceApiRx = Retrofit.Builder().createAdapter(BuildConfig.URL)
 
   @Provides
   @Singleton
   fun provideTracksDatasource(
-    database: Database,
+    database: DBDelegate,
     service: ServiceApiRx,
     networkManager: NetworkManager
   ) = TracksDatasource(service, database, networkManager)

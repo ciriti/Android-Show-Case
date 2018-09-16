@@ -28,6 +28,8 @@ import ciriti.datalayer.network.Track
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.target.Target
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -38,6 +40,8 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subscribers.TestSubscriber
 import kotlinx.android.synthetic.main.activity_main.fragmentContainer
 import kotlinx.android.synthetic.main.fragment_top_track.swiperefresh
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 /**
  * Created by ciriti
@@ -90,9 +94,6 @@ fun AppCompatActivity.openFragment(@IdRes resId: Int, fragment: Fragment) {
       .commit()
 }
 
-val Context.preferences: SharedPreferences
-  get() = PreferenceManager.getDefaultSharedPreferences(this)
-
 /**
  * View extensions
  */
@@ -132,6 +133,7 @@ fun ImageView.loadUrlAndPostponeEnterTransition(
  * Rx extension
  */
 fun <T> Single<T>.subscribeOnWorkerT() = subscribeOn(Schedulers.computation())
+
 fun <T> Single<T>.observeOnAndroidMT() = observeOn(AndroidSchedulers.mainThread())
 fun <T> Flowable<T>.subscribeOnWorkerT() = subscribeOn(Schedulers.computation())
 fun <T> Flowable<T>.observeOnAndroidMT() = observeOn(AndroidSchedulers.mainThread())
@@ -158,7 +160,8 @@ fun Track.getFlatTrack(): FlatTrack {
       listeners = this.listeners,
       mbid = this.mbid,
       playcount = this.playcount,
-      url = this.url
+      url = this.url,
+      time = this.timestamp
   )
 }
 
@@ -179,8 +182,22 @@ fun BaseViewModel.handleException(error: Throwable) = when (error) {
  */
 fun <T> TestSubscriber<T>.firstValues() = this.values().first()
 
-fun Fragment.getColor(@ColorRes colorId : Int) = ContextCompat.getColor(context!!, colorId)
+fun Fragment.getColor(@ColorRes colorId: Int) = ContextCompat.getColor(context!!, colorId)
 
-fun BaseFragment.setColorsSwipeRefresh(@ColorRes vararg colors : Int){
+fun BaseFragment.setColorsSwipeRefresh(@ColorRes vararg colors: Int) {
   swiperefresh.setColorSchemeResources(*colors)
+}
+
+/**
+ * Preferences
+ */
+
+val Context.preferences: SharedPreferences
+  get() = PreferenceManager.getDefaultSharedPreferences(this)
+
+inline fun <reified K> String.createListObjByJsonFile(): K {
+  val typeToken = object : TypeToken<K>() {}.type
+  val jsonString = this
+  var objs: K = Gson().fromJson<K>(jsonString, typeToken)
+  return objs
 }
