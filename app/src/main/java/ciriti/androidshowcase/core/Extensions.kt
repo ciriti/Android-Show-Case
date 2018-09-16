@@ -161,7 +161,8 @@ fun Track.getFlatTrack(): FlatTrack {
       mbid = this.mbid,
       playcount = this.playcount,
       url = this.url,
-      time = this.timestamp
+      time = this.timestamp,
+      rank = this.rank.toString()
   )
 }
 

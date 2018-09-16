@@ -16,12 +16,12 @@ import kotlinx.android.synthetic.main.row_track.view.tv_title
  * Created by ciriti
  */
 
-fun RowTrack.bind(track: FlatTrack, position : String = "") {
+fun RowTrack.bind(track: FlatTrack) {
   trackWall.loadFromUrl(track.imageUrl_XL)
   tv_artist.text = track.artistName
   tv_title.text = track.title
   tv_timestamp.text = track.time
-  tv_rank.hideIfValueIsEmpty(position)
+  tv_rank.hideIfValueIsEmpty(track.rank)
 }
 
 fun RecyclerView.configureStandardVisualization() {
