@@ -12,6 +12,29 @@ It is based on:
 
 I've chosen the following [Code Styles](https://github.com/square/java-code-styles/).
 
+##### Offline Capabilities
+
+I implemented a simple mechanism to support offline Capabilities.
+The logic is inside the implementation of DBDelegate.kt.
+As the name suggests, to add this feature, I used a simple implementation
+of the [Decorator Pattern](https://en.wikipedia.org/wiki/Decorator_pattern)
+using the [class delegation](https://kotlinlang.org/docs/reference/delegation.html)
+feature from Kotlin.
+
+This version of DBDelegate.kt stores the json of the tracks list
+inside Shared Preferences.
+
+Of course it is possible to create with the same technique
+([class delegation](https://kotlinlang.org/docs/reference/delegation.html))
+different implementation using different way to store the data.
+
+The Database architecture follows also the
+[Open-Close principle](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle).
+It provides an interface and a default implementation. The default class is **final**
+but you can create your own implementation and using it in all your application
+without causing crash.
+
+
 ##### Architecture:
 
 - MVVM
