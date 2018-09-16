@@ -60,6 +60,7 @@ class TopTracksFragment : BaseFragment() {
   fun init() {
 
     trackList.configureStandardVisualization()
+    topTracksViewModel.observeTopTracks()
 
     trackList.adapter = tracksAdapter
     tracksAdapter.clickListener = { track, navigationExtras ->

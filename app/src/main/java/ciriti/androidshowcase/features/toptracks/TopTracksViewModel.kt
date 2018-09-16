@@ -24,7 +24,6 @@ class TopTracksViewModel @Inject constructor(
 
   init {
     liveData.value = DefaultState(emptyList())
-    observeTopTracks()
   }
 
   fun clear() {
