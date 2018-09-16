@@ -12,15 +12,36 @@ It is based on:
 
 I've chosen the following [Code Styles](https://github.com/square/java-code-styles/).
 
-##### Architecture:
+### Offline Capabilities
+
+I implemented a simple mechanism to support offline Capabilities.
+The logic is [DBDelegate.kt](app/src/main/java/ciriti/androidshowcase/core/components/DBDelegate.kt).
+As the name suggests, to add this feature, I used [class delegation](https://kotlinlang.org/docs/reference/delegation.html) feature from Kotlin
+to implement the [Decorator Pattern](https://en.wikipedia.org/wiki/Decorator_pattern).
+
+[DBDelegate.kt](app/src/main/java/ciriti/androidshowcase/core/components/DBDelegate.kt)
+stores the json of the tracks list inside Shared Preferences.
+
+Of course with the same technique ([class delegation](https://kotlinlang.org/docs/reference/delegation.html)),
+it is possible to create different implementations using others mechanisms
+to store the data.
+
+Additionally, the database structure follows the
+[Open-Close principle](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle),
+which provides an interface and a default implementation. The class I provide is
+**final** but it leaves you the option of creating your own implementation to
+use it in the application - without causing crash.
+
+
+### Architecture:
 
 - MVVM
 
-##### Language:
+### Language:
 
 - kotlin
 
-##### Used libraries:
+### Used libraries:
 
 - RxJava
 - Retrofit 2
@@ -29,7 +50,7 @@ I've chosen the following [Code Styles](https://github.com/square/java-code-styl
 - canary leaks
 - Android Architecture Components
 
-##### Test libraries:
+### Test libraries:
 
 - Espresso
 - Mockito

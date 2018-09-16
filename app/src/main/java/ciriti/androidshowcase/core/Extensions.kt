@@ -40,8 +40,6 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subscribers.TestSubscriber
 import kotlinx.android.synthetic.main.activity_main.fragmentContainer
 import kotlinx.android.synthetic.main.fragment_top_track.swiperefresh
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 /**
  * Created by ciriti
