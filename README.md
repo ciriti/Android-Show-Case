@@ -35,6 +35,9 @@ use it in the application - without causing crash.
 This approach makes the application maintainable and scalable. It also makes
 easy to test as you can see in [DBDelegateTest.kt](app/src/androidTest/java/ciriti/androidshowcase/core/components/DBDelegateTest.kt)
 
+#### Use case
+
+![ev_offline](art/ev_offline.jpg)
 
 ### Architecture:
 
