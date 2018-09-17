@@ -51,7 +51,7 @@ In this case, you will be able to get the home page as follows.
 Every time you will swipe to refresh the data, the timestamp will be
 updated with the last info.
 
-![ev_offline](art/home.jpg)
+![ev_offline](art/home_v2.jpg)
 
 #### 2.1 Connection is not connected but data are already present.
 
