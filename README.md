@@ -61,7 +61,7 @@ that **You are in offline mode**.
 Every time you will swipe to refresh the data, the timestamp won't be
 updated with the last timestamp.
 
-![ev_offline](art/sb_offline.jpg)
+![ev_offline](art/sb_offline_v2.jpg)
 
 #### 2.2 Connection is not connected but data are NOT present.
 
