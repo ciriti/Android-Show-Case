@@ -42,7 +42,7 @@ To make the offline mode more effective I decided to insert a timestamp
 on the top-right corner of each element.
 It will be updated every time you fetch data from the network.
 
-![ev_offline](art/timestamp.jpg)
+![ev_offline](art/timestamp_v2.jpg)
 
 #### 1. The application is connected
 
