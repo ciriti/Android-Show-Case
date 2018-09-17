@@ -2,8 +2,10 @@ package ciriti.androidshowcase.features.toptracks.component
 
 import android.view.View
 import android.widget.TextView
+import androidx.core.content.res.TypedArrayUtils
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import ciriti.androidshowcase.R
 import ciriti.androidshowcase.core.components.FlatTrack
 import ciriti.androidshowcase.core.loadFromUrl
 import kotlinx.android.synthetic.main.row_track.view.trackWall
@@ -20,7 +22,7 @@ fun RowTrack.bind(track: FlatTrack) {
   trackWall.loadFromUrl(track.imageUrl_XL)
   tv_artist.text = track.artistName
   tv_title.text = track.title
-  tv_timestamp.text = track.time
+  tv_timestamp.text = String.format(context.getString(R.string.last_update), track.time)
   tv_rank.hideIfValueIsEmpty(track.rank)
 }
 
