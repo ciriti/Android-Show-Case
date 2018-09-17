@@ -1,6 +1,6 @@
 # AndroidShowCase
 
-The app uses a free music API. It has two main modules:
+The app uses a free music [API](https://www.last.fm/api). It has two main modules:
 
 - App: view layer
 - Datasource: data layer
