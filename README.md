@@ -70,7 +70,7 @@ and also the snackbar.
 
 ![ev_offline](art/ev_offline.jpg)
 
-### Architecture:
+### Architectural pattern:
 
 - MVVM
 
