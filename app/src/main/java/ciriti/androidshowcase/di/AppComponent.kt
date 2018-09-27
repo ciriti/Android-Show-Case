@@ -13,7 +13,7 @@ import javax.inject.Singleton
     modules = [
       ModuleActivity::class,
       ModuleViewModel::class,
-      ModuleDatasource::class,
+      ModuleDataLayer::class,
       ModuleUsecase::class
     ]
 )

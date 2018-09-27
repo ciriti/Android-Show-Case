@@ -32,7 +32,7 @@ import javax.inject.Singleton
  */
 
 @Module
-class ModuleDatasource {
+class ModuleDataLayer {
 
   @Provides
   fun provideApplicationContext(
@@ -62,8 +62,8 @@ class ModuleDatasource {
   @Singleton
   @Named(value = "api_delegate")
   fun provideServiceApiRxDelegateServiceApiRx(
-    retrofirAdapterDelegate: ServiceApiRxDelegateServiceApiRx
-  ) : ServiceApiRx = retrofirAdapterDelegate
+    retrofitAdapterDelegate: ServiceApiRxDelegateServiceApiRx
+  ) : ServiceApiRx = retrofitAdapterDelegate
 
   @Provides
   @Singleton
