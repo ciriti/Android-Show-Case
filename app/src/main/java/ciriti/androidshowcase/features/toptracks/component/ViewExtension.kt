@@ -2,12 +2,11 @@ package ciriti.androidshowcase.features.toptracks.component
 
 import android.view.View
 import android.widget.TextView
-import androidx.core.content.res.TypedArrayUtils
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import ciriti.androidshowcase.R
 import ciriti.androidshowcase.core.components.FlatTrack
-import ciriti.androidshowcase.core.loadFromUrl
+import ciriti.androidshowcase.core.util.loadFromUrl
 import kotlinx.android.synthetic.main.row_track.view.trackWall
 import kotlinx.android.synthetic.main.row_track.view.tv_artist
 import kotlinx.android.synthetic.main.row_track.view.tv_rank

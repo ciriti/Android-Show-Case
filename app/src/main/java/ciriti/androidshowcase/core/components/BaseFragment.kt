@@ -5,13 +5,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ciriti.androidshowcase.R
-import ciriti.androidshowcase.core.appContext
-import ciriti.androidshowcase.core.viewContainer
+import ciriti.androidshowcase.core.util.appContext
+import ciriti.androidshowcase.core.util.viewContainer
 import ciriti.androidshowcase.di.Injectable
 import com.google.android.material.snackbar.Snackbar
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.fragment_top_track.swiperefresh
 import javax.inject.Inject
 

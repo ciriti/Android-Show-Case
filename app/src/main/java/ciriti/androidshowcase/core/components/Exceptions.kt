@@ -1,4 +1,4 @@
-package ciriti.androidshowcase.core
+package ciriti.androidshowcase.core.components
 
 /**
  * Created by ciriti

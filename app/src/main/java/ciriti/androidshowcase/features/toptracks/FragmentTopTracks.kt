@@ -9,10 +9,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import ciriti.androidshowcase.R
 import ciriti.androidshowcase.core.components.BaseFragment
-import ciriti.androidshowcase.core.invisible
-import ciriti.androidshowcase.core.setColorsSwipeRefresh
+import ciriti.androidshowcase.core.util.invisible
+import ciriti.androidshowcase.core.util.setColorsSwipeRefresh
 import ciriti.androidshowcase.core.util.Navigator
-import ciriti.androidshowcase.core.visible
+import ciriti.androidshowcase.core.util.visible
 import ciriti.androidshowcase.di.Injectable
 import ciriti.androidshowcase.core.util.CustomState
 import ciriti.androidshowcase.core.util.DefaultState
@@ -28,11 +28,11 @@ import javax.inject.Inject
 /**
  * Created by ciriti
  */
-class TopTracksFragment : BaseFragment(), Injectable {
+class FragmentTopTracks : BaseFragment(), Injectable {
 
   @Inject lateinit var tracksAdapter: TracksAdapter
   @Inject lateinit var navigator: Navigator
-  lateinit var topTracksViewModel: TopTracksViewModel
+  lateinit var topTracksViewModel: ViewModelTopTracks
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -40,7 +40,7 @@ class TopTracksFragment : BaseFragment(), Injectable {
     savedInstanceState: Bundle?
   ): View? {
     topTracksViewModel = ViewModelProviders.of(this, viewModelFactory)
-        .get(TopTracksViewModel::class.java)
+        .get(ViewModelTopTracks::class.java)
     return inflater.inflate(R.layout.fragment_top_track, container, false)
   }
 

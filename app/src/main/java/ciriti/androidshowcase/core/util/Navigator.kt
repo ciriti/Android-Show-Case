@@ -9,9 +9,7 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentActivity
 import ciriti.androidshowcase.core.components.FlatTrack
 import ciriti.androidshowcase.core.components.ViewTransitionInfo
-import ciriti.androidshowcase.core.empty
-import ciriti.androidshowcase.core.invokeActivity
-import ciriti.androidshowcase.features.toptracks.TopTracksActivity
+import ciriti.androidshowcase.features.toptracks.ActivityTopTracks
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -34,7 +32,7 @@ class Navigator @Inject constructor(private val session: ISession) {
     }
   }
 
-  private fun showTopTracks(context: Context) = context.invokeActivity<TopTracksActivity>()
+  private fun showTopTracks(context: Context) = context.invokeActivity<ActivityTopTracks>()
 
   fun showTrackDetails(
     activity: FragmentActivity,

@@ -1,6 +1,6 @@
 package ciriti.androidshowcase.di
 
-import ciriti.androidshowcase.features.toptracks.TopTracksFragment
+import ciriti.androidshowcase.features.toptracks.FragmentTopTracks
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -11,6 +11,6 @@ import dagger.android.ContributesAndroidInjector
 abstract class ModuleFragment {
 
   @ContributesAndroidInjector
-  abstract fun topTracksFragmentInjector(): TopTracksFragment
+  abstract fun topTracksFragmentInjector(): FragmentTopTracks
 
 }

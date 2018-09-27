@@ -3,8 +3,8 @@ package ciriti.androidshowcase.core.components
 import android.content.Context
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
-import ciriti.androidshowcase.core.cachedTracks
-import ciriti.androidshowcase.core.preferences
+import ciriti.androidshowcase.core.util.cachedTracks
+import ciriti.androidshowcase.core.util.preferences
 import ciriti.datalayer.database.IDatabase
 import ciriti.datalayer.network.TopTrack
 import com.google.gson.Gson

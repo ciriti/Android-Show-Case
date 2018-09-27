@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import ciriti.androidshowcase.BuildConfig
 import ciriti.androidshowcase.TrackApplication
 import ciriti.androidshowcase.core.components.DBDelegate
-import ciriti.androidshowcase.core.preferences
+import ciriti.androidshowcase.core.util.preferences
 import ciriti.androidshowcase.core.util.ISession
 import ciriti.androidshowcase.core.util.Session
 import ciriti.datalayer.BuildConfig.DEBUG

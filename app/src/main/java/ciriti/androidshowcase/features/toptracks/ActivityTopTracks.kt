@@ -4,8 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import ciriti.androidshowcase.R
-import ciriti.androidshowcase.core.initilize
-import dagger.android.AndroidInjection
+import ciriti.androidshowcase.core.util.initilize
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
@@ -15,7 +14,7 @@ import javax.inject.Inject
 /**
  * Created by ciriti
  */
-class TopTracksActivity : AppCompatActivity(), HasSupportFragmentInjector {
+class ActivityTopTracks : AppCompatActivity(), HasSupportFragmentInjector {
 
   @Inject lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
   override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentInjector
@@ -24,7 +23,7 @@ class TopTracksActivity : AppCompatActivity(), HasSupportFragmentInjector {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
     setSupportActionBar(toolbar)
-    initilize(TopTracksFragment(), R.id.fragmentContainer)
+    initilize(FragmentTopTracks(), R.id.fragmentContainer)
   }
 
 }

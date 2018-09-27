@@ -1,6 +1,6 @@
 package ciriti.androidshowcase.features.toptracks
 
-import ciriti.androidshowcase.core.firstValues
+import ciriti.androidshowcase.core.util.firstValues
 import ciriti.datalayer.datasource.TracksDatasource
 import ciriti.datalayer.network.TopTrack
 import ciriti.datalayer.network.Track
@@ -23,7 +23,7 @@ class TopTracksUseCaseTest {
   @Rule fun mokitoRules() = MockitoJUnit.rule()
 
   @Mock lateinit var trackDatasource: TracksDatasource
-  @InjectMocks lateinit var useCase: TopTracksUseCase
+  @InjectMocks lateinit var useCase: UseCaseTopTracks
 
   @Test
   fun `test the transformation of the list`() {

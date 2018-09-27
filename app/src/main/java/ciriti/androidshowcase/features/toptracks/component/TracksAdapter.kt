@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ciriti.androidshowcase.R
 import ciriti.androidshowcase.core.components.FlatTrack
 import ciriti.androidshowcase.core.components.ViewTransitionInfo
-import ciriti.androidshowcase.core.inflate
+import ciriti.androidshowcase.core.util.inflate
 import kotlinx.android.synthetic.main.row_track.view.trackWall
 import javax.inject.Inject
 import kotlin.properties.Delegates

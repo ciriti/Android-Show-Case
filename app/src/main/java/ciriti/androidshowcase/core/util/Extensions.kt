@@ -1,4 +1,4 @@
-package ciriti.androidshowcase.core
+package ciriti.androidshowcase.core.util
 
 import android.content.Context
 import android.content.Intent
@@ -21,7 +21,6 @@ import androidx.fragment.app.FragmentTransaction
 import ciriti.androidshowcase.R
 import ciriti.androidshowcase.core.components.BaseFragment
 import ciriti.androidshowcase.core.components.FlatTrack
-import ciriti.androidshowcase.core.util.ImageViewBaseTarget
 import ciriti.androidshowcase.core.components.BaseViewModel
 import ciriti.datalayer.exception.NoNetworkException
 import ciriti.datalayer.network.Track

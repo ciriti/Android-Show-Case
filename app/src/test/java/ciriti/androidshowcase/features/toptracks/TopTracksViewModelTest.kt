@@ -5,7 +5,7 @@ package ciriti.androidshowcase.features.toptracks
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import ciriti.androidshowcase.R
-import ciriti.androidshowcase.core.getFlatTrack
+import ciriti.androidshowcase.core.util.getFlatTrack
 import ciriti.androidshowcase.core.util.BaseState
 import ciriti.androidshowcase.core.util.CustomState
 import ciriti.androidshowcase.core.util.DefaultState
@@ -35,10 +35,10 @@ class TopTracksViewModelTest {
 
   @Rule @JvmField val rule = InstantTaskExecutorRule()
   @Rule fun mokitoRules() = MockitoJUnit.rule()
-  @Mock lateinit var topTracksUseCase: TopTracksUseCase
+  @Mock lateinit var topTracksUseCase: UseCaseTopTracks
   @Mock lateinit var observer: Observer<BaseState>
 
-  val viewModel by lazy { TopTracksViewModel(topTracksUseCase) }
+  val viewModel by lazy { ViewModelTopTracks(topTracksUseCase) }
 
   @Before
   fun setUp() {

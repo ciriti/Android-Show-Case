@@ -1,6 +1,6 @@
 package ciriti.androidshowcase.di
 
-import ciriti.androidshowcase.features.toptracks.TopTracksActivity
+import ciriti.androidshowcase.features.toptracks.ActivityTopTracks
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -11,10 +11,10 @@ import dagger.android.ContributesAndroidInjector
 abstract class ModuleActivity {
 
   /**
-   * An AndroidInjector will be created the for the TopTracksActivity.
+   * An AndroidInjector will be created the for the ActivityTopTracks.
    */
   @ScopeActivity
   @ContributesAndroidInjector(modules = [ModuleFragment::class])
-  abstract fun TopTracksActivityInjector(): TopTracksActivity
+  abstract fun TopTracksActivityInjector(): ActivityTopTracks
 
 }

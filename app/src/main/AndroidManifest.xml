@@ -11,7 +11,7 @@
       android:supportsRtl="true"
       android:theme="@style/AppTheme">
     <activity
-        android:name=".features.toptracks.TopTracksActivity"
+        android:name=".features.toptracks.ActivityTopTracks"
         android:theme="@style/AppTheme.Translucent">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>

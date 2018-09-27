@@ -3,7 +3,7 @@ package ciriti.androidshowcase.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import ciriti.androidshowcase.core.components.ViewModelFactory
-import ciriti.androidshowcase.features.toptracks.TopTracksViewModel
+import ciriti.androidshowcase.features.toptracks.ViewModelTopTracks
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -22,7 +22,7 @@ abstract class ModuleViewModel {
   @Binds
   @IntoMap
   @Singleton
-  @ViewModelKey(TopTracksViewModel::class)
-  abstract fun bindTopTracksViewModel(vm: TopTracksViewModel): ViewModel
+  @ViewModelKey(ViewModelTopTracks::class)
+  abstract fun bindTopTracksViewModel(vm: ViewModelTopTracks): ViewModel
 
 }
