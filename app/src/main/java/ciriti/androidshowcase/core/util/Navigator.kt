@@ -12,12 +12,15 @@ import ciriti.androidshowcase.core.components.ViewTransitionInfo
 import ciriti.androidshowcase.core.empty
 import ciriti.androidshowcase.core.invokeActivity
 import ciriti.androidshowcase.features.toptracks.TopTracksActivity
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Created by ciriti
  */
 
-class Navigator(private val session: Session) {
+@Singleton
+class Navigator @Inject constructor(private val session: ISession) {
 
   private fun showLogin(context: Context) = context.startActivity(
       null

@@ -44,8 +44,10 @@ class TracksDatasourceTest {
     whenever(networkManager.isConnected).thenReturn(Single.just(true))
 
     /** action to test */
-    datasource.loadTracks(10).test()
-    datasource.loadTracks(10).test()
+    datasource.loadTracks(10)
+        .test()
+    datasource.loadTracks(10)
+        .test()
 
     /** db is the object under test */
     verify(db, times(2)).saveCollection(list)

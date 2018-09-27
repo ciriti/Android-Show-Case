@@ -10,7 +10,6 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class ModuleFragment {
 
-  @ScopeFragment
   @ContributesAndroidInjector
   abstract fun topTracksFragmentInjector(): TopTracksFragment
 

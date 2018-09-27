@@ -6,20 +6,25 @@ import ciriti.androidshowcase.BuildConfig
 import ciriti.androidshowcase.TrackApplication
 import ciriti.androidshowcase.core.components.DBDelegate
 import ciriti.androidshowcase.core.preferences
-import ciriti.androidshowcase.core.util.Navigator
+import ciriti.androidshowcase.core.util.ISession
 import ciriti.androidshowcase.core.util.Session
+import ciriti.datalayer.BuildConfig.DEBUG
 import ciriti.datalayer.database.Database
+import ciriti.datalayer.database.IDatabase
+import ciriti.datalayer.datasource.ITracksDatasource
+import ciriti.datalayer.datasource.IUserDatasource
 import ciriti.datalayer.datasource.TracksDatasource
 import ciriti.datalayer.datasource.UserDatasource
 import ciriti.datalayer.network.ServiceApiRx
 import ciriti.datalayer.network.ServiceApiRxDelegateServiceApiRx
-import ciriti.datalayer.network.Track
+import ciriti.datalayer.util.INetworkManager
 import ciriti.datalayer.util.NetworkManager
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -30,31 +35,35 @@ import javax.inject.Singleton
 class ModuleDatasource {
 
   @Provides
-  @Singleton
-  fun provideNetworkManager(app: TrackApplication) = NetworkManager(app)
+  fun provideApplicationContext(
+    app: TrackApplication
+  ): Context = app.applicationContext
 
   @Provides
   @Singleton
-  fun provideDatabase() = Database()
+  fun provideNetworkManager(networkManager: NetworkManager): INetworkManager = networkManager
+
+  @Provides
+  @Singleton
+  fun provideDatabase(db: Database): IDatabase = db
 
   /**
    * Example of delegate to implement decorator pattern for Database
    */
   @Provides
   @Singleton
-  fun provideDBDelegate(
-    app: TrackApplication,
-    db: Database
-  ) = DBDelegate(app, db)
+  @Named(value = "db_delegate")
+  fun provideDBDelegate(dbDelegate : DBDelegate) :IDatabase = dbDelegate
 
   /**
    * Example of delegate to implement decorator pattern for NetworkAdapter
    */
   @Provides
   @Singleton
+  @Named(value = "api_delegate")
   fun provideServiceApiRxDelegateServiceApiRx(
-    retrofirAdapter : ServiceApiRx
-  ) = ServiceApiRxDelegateServiceApiRx(retrofirAdapter)
+    retrofirAdapterDelegate: ServiceApiRxDelegateServiceApiRx
+  ) : ServiceApiRx = retrofirAdapterDelegate
 
   @Provides
   @Singleton
@@ -62,18 +71,12 @@ class ModuleDatasource {
 
   @Provides
   @Singleton
-  fun provideTracksDatasource(
-    database: DBDelegate,
-    service: ServiceApiRxDelegateServiceApiRx,
-    networkManager: NetworkManager
-  ) = TracksDatasource(service, database, networkManager)
+  fun provideTracksDatasource(tracksDatasource: TracksDatasource): ITracksDatasource =
+    tracksDatasource
 
   @Provides
   @Singleton
-  fun provideUserDatasource(
-    database: Database,
-    service: ServiceApiRx
-  ) = UserDatasource(database = database, networAdapter = service)
+  fun provideUserDatasource(userDs: UserDatasource): IUserDatasource = userDs
 
   @Provides
   @Singleton
@@ -81,18 +84,14 @@ class ModuleDatasource {
 
   @Provides
   @Singleton
-  fun provideSession(userDataSource: UserDatasource) = Session(userDataSource)
-
-  @Provides
-  @Singleton
-  fun provideNavigator(session: Session) = Navigator(session)
+  fun provideSession(session: Session): ISession = session
 
 }
 
 inline fun <reified T> Retrofit.Builder.createAdapter(url: String): T {
 
   val interceptor = HttpLoggingInterceptor()
-  interceptor.level = when (BuildConfig.DEBUG) {
+  interceptor.level = when (DEBUG) {
     true -> HttpLoggingInterceptor.Level.BODY
     else -> HttpLoggingInterceptor.Level.NONE
   }

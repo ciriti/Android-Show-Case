@@ -75,7 +75,8 @@ dependencies {
     //Firestore
     implementation "com.google.firebase:firebase-core:$firebase_ver"
     implementation "com.google.firebase:firebase-firestore:$firestore_ver"
-
+    // android annotation
+    implementation "javax.inject:javax.inject:$javaxInject_version"
     // Test helpers
     testImplementation "android.arch.persistence.room:testing:$room_version"
     testImplementation "com.nhaarman:mockito-kotlin:1.5.0"

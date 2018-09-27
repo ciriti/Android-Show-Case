@@ -1,5 +1,7 @@
 package ciriti.datalayer.network
 
+import javax.inject.Inject
+
 /**
  * Created by ciriti
  */
@@ -8,7 +10,9 @@ package ciriti.datalayer.network
  *
  * The structure of this class also follow the "Open Close principle" from SOLID principle
  */
-class ServiceApiRxDelegateServiceApiRx(val service: ServiceApiRx) : ServiceApiRx by service {
+class ServiceApiRxDelegateServiceApiRx @Inject constructor(
+  val service: ServiceApiRx
+) : ServiceApiRx by service {
 
   override fun getTopTracks(pLimit: Int) =
     service

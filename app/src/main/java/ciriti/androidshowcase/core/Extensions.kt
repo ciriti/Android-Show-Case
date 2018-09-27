@@ -22,7 +22,7 @@ import ciriti.androidshowcase.R
 import ciriti.androidshowcase.core.components.BaseFragment
 import ciriti.androidshowcase.core.components.FlatTrack
 import ciriti.androidshowcase.core.util.ImageViewBaseTarget
-import ciriti.androidshowcase.features.BaseViewModel
+import ciriti.androidshowcase.core.components.BaseViewModel
 import ciriti.datalayer.exception.NoNetworkException
 import ciriti.datalayer.network.Track
 import com.bumptech.glide.Glide

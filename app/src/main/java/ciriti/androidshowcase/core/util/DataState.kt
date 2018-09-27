@@ -1,4 +1,4 @@
-package ciriti.androidshowcase.features
+package ciriti.androidshowcase.core.util
 
 import androidx.annotation.StringRes
 import ciriti.androidshowcase.core.components.FlatTrack

@@ -2,6 +2,7 @@ package ciriti.datalayer.database
 
 import ciriti.datalayer.network.Track
 import io.reactivex.processors.BehaviorProcessor
+import javax.inject.Inject
 
 /**
  * Created by ciriti
@@ -25,12 +26,11 @@ interface IDatabase {
  * Currently it is container of a list but you can change the implementation adn
  * add a real DB.
  */
-class Database(
-  val listProcessor: BehaviorProcessor<List<Track>> = BehaviorProcessor.create(),
-  val trackProcessor: BehaviorProcessor<Track> = BehaviorProcessor.create()
-) : IDatabase {
+class Database @Inject constructor() : IDatabase {
 
   private var tracks: List<Track> = emptyList()
+  val listProcessor: BehaviorProcessor<List<Track>> = BehaviorProcessor.create()
+  val trackProcessor: BehaviorProcessor<Track> = BehaviorProcessor.create()
 
   init {
     listProcessor.onNext(tracks)

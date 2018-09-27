@@ -1,5 +1,6 @@
 package ciriti.androidshowcase.di
 
+import ciriti.androidshowcase.features.toptracks.ITopTracksUseCase
 import ciriti.androidshowcase.features.toptracks.TopTracksUseCase
 import ciriti.datalayer.datasource.TracksDatasource
 import dagger.Module
@@ -14,6 +15,6 @@ class ModuleUsecase {
 
     @Provides
     @Singleton
-    fun provideTopTracksUseCase(trackDs : TracksDatasource) = TopTracksUseCase(trackDs)
+    fun provideTopTracksUseCase(topTracksUseCase : TopTracksUseCase) : ITopTracksUseCase = topTracksUseCase
 
 }

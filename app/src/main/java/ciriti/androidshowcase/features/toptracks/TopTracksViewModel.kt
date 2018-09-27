@@ -6,18 +6,18 @@ import ciriti.androidshowcase.core.handleException
 import ciriti.androidshowcase.core.observeOnAndroidMT
 import ciriti.androidshowcase.core.plusAssign
 import ciriti.androidshowcase.core.subscribeOnWorkerT
-import ciriti.androidshowcase.features.BaseState
-import ciriti.androidshowcase.features.BaseViewModel
-import ciriti.androidshowcase.features.DefaultState
-import ciriti.androidshowcase.features.ErrorState
-import ciriti.androidshowcase.features.LoadingState
+import ciriti.androidshowcase.core.util.BaseState
+import ciriti.androidshowcase.core.components.BaseViewModel
+import ciriti.androidshowcase.core.util.DefaultState
+import ciriti.androidshowcase.core.util.ErrorState
+import ciriti.androidshowcase.core.util.LoadingState
 import javax.inject.Inject
 
 /**
  * Created by ciriti
  */
 class TopTracksViewModel @Inject constructor(
-  private val topTracksUseCase: TopTracksUseCase
+  private val topTracksUseCase: ITopTracksUseCase
 ) : BaseViewModel() {
 
   val liveData by lazy { MutableLiveData<BaseState>() }

@@ -1,4 +1,4 @@
-package ciriti.androidshowcase.features
+package ciriti.androidshowcase.core.components
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

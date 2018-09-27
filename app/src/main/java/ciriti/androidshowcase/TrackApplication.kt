@@ -2,7 +2,7 @@ package ciriti.androidshowcase
 
 import android.app.Activity
 import android.app.Application
-import ciriti.androidshowcase.di.DaggerAppComponent
+import ciriti.androidshowcase.di.AppInjector
 import com.squareup.leakcanary.LeakCanary
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -18,12 +18,9 @@ class TrackApplication : Application(), HasActivityInjector {
 
   override fun onCreate() {
     super.onCreate()
-//    FirebaseApp.initializeApp(this)
-
+    // TODO FirebaseApp.initializeApp(this)
     LeakCanary.install(this)
-    DaggerAppComponent.builder()
-        .create(this)
-        .inject(this)
+    AppInjector.init(this)
 
   }
 }

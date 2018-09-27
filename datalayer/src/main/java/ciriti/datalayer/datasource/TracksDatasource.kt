@@ -5,9 +5,11 @@ import ciriti.datalayer.database.IDatabase
 import ciriti.datalayer.exception.NoNetworkException
 import ciriti.datalayer.network.ServiceApiRx
 import ciriti.datalayer.network.Track
-import ciriti.datalayer.util.NetworkManager
+import ciriti.datalayer.util.INetworkManager
 import io.reactivex.Completable
 import io.reactivex.processors.BehaviorProcessor
+import javax.inject.Inject
+import javax.inject.Named
 
 /**
  * Created by ciriti
@@ -22,10 +24,10 @@ interface ITracksDatasource {
 }
 
 @MakeItOpenForTest
-class TracksDatasource(
-  protected val networAdapter: ServiceApiRx,
-  protected val database: IDatabase,
-  protected val networkManager: NetworkManager
+class TracksDatasource @Inject constructor(
+  @Named(value = "api_delegate") protected val networAdapter: ServiceApiRx,
+  @Named(value = "db_delegate") protected val database: IDatabase,
+  protected val networkManager: INetworkManager
 ) : ITracksDatasource {
 
   override fun loadTracks(limit: Int): Completable =

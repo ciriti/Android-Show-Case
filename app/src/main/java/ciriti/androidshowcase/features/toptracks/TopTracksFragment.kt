@@ -1,6 +1,5 @@
 package ciriti.androidshowcase.features.toptracks
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +13,11 @@ import ciriti.androidshowcase.core.invisible
 import ciriti.androidshowcase.core.setColorsSwipeRefresh
 import ciriti.androidshowcase.core.util.Navigator
 import ciriti.androidshowcase.core.visible
-import ciriti.androidshowcase.features.CustomState
-import ciriti.androidshowcase.features.DefaultState
-import ciriti.androidshowcase.features.ErrorState
-import ciriti.androidshowcase.features.LoadingState
+import ciriti.androidshowcase.di.Injectable
+import ciriti.androidshowcase.core.util.CustomState
+import ciriti.androidshowcase.core.util.DefaultState
+import ciriti.androidshowcase.core.util.ErrorState
+import ciriti.androidshowcase.core.util.LoadingState
 import ciriti.androidshowcase.features.toptracks.component.TracksAdapter
 import ciriti.androidshowcase.features.toptracks.component.configureStandardVisualization
 import kotlinx.android.synthetic.main.fragment_top_track.emptyView
@@ -28,23 +28,19 @@ import javax.inject.Inject
 /**
  * Created by ciriti
  */
-class TopTracksFragment : BaseFragment() {
+class TopTracksFragment : BaseFragment(), Injectable {
 
   @Inject lateinit var tracksAdapter: TracksAdapter
   @Inject lateinit var navigator: Navigator
   lateinit var topTracksViewModel: TopTracksViewModel
-
-  override fun onAttach(context: Context?) {
-    super.onAttach(context)
-    topTracksViewModel = ViewModelProviders.of(this, viewModelFactory)
-        .get(TopTracksViewModel::class.java)
-  }
 
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
+    topTracksViewModel = ViewModelProviders.of(this, viewModelFactory)
+        .get(TopTracksViewModel::class.java)
     return inflater.inflate(R.layout.fragment_top_track, container, false)
   }
 

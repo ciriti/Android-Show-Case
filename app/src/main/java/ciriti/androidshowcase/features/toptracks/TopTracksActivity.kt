@@ -21,9 +21,6 @@ class TopTracksActivity : AppCompatActivity(), HasSupportFragmentInjector {
   override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentInjector
 
   override fun onCreate(savedInstanceState: Bundle?) {
-
-    AndroidInjection.inject(this)
-
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
     setSupportActionBar(toolbar)

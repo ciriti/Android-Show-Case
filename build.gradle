@@ -70,6 +70,7 @@ ext {
   retrofit_version = '2.4.0'
   aac_lifecycle_version = "1.1.1"
   leak_canary_version = "1.5.4"
+  javaxInject_version = '1'
 
   mockito_version = "2.12.0"
 

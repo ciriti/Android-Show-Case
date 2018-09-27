@@ -6,11 +6,11 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import ciriti.androidshowcase.R
 import ciriti.androidshowcase.core.getFlatTrack
-import ciriti.androidshowcase.features.BaseState
-import ciriti.androidshowcase.features.CustomState
-import ciriti.androidshowcase.features.DefaultState
-import ciriti.androidshowcase.features.ErrorState
-import ciriti.androidshowcase.features.LoadingState
+import ciriti.androidshowcase.core.util.BaseState
+import ciriti.androidshowcase.core.util.CustomState
+import ciriti.androidshowcase.core.util.DefaultState
+import ciriti.androidshowcase.core.util.ErrorState
+import ciriti.androidshowcase.core.util.LoadingState
 import ciriti.datalayer.exception.NoNetworkException
 import ciriti.datalayer.network.TopTrack
 import io.reactivex.Completable
