@@ -13,7 +13,7 @@ import dagger.android.support.HasSupportFragmentInjector
  * Created by Carmelo Iriti
  *
  * I got this way to do from the google samples code
- * I manage the listener as in Anko library
+ * I handled the listeners as in Anko library
  *
  * https://github.com/googlesamples/android-architecture-components
  *
