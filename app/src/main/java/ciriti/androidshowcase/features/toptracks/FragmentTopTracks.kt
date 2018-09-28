@@ -1,5 +1,6 @@
 package ciriti.androidshowcase.features.toptracks
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -40,7 +41,7 @@ class FragmentTopTracks : BaseFragment(), Injectable {
     savedInstanceState: Bundle?
   ): View? {
     topTracksViewModel = ViewModelProviders.of(this, viewModelFactory)
-        .get(ViewModelTopTracks::class.java)
+            .get(ViewModelTopTracks::class.java)
     return inflater.inflate(R.layout.fragment_top_track, container, false)
   }
 
